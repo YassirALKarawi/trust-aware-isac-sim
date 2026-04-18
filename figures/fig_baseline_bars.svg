@@ -1,74 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" width="880" height="520" font-family="'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="14" role="img" aria-label="Baseline comparison — Utility, Detection, Normalised Rate">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" font-family="'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif" role="img" aria-label="Baseline Comparison — Mean Utility (± std)">
+
+<defs>
+  <filter id="panelShadow" x="-5%" y="-5%" width="110%" height="115%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="2.2"/>
+    <feOffset dx="0" dy="2"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="pointShadow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur in="SourceAlpha" stdDeviation="1.4"/>
+    <feOffset dx="0" dy="1"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.35"/></feComponentTransfer>
+    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <marker id="mArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#0f172a"/>
+  </marker>
+</defs>
+
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="440.0" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">Baseline comparison — Utility, Detection, Normalised Rate</text>
-<rect x="90" y="70" width="670" height="380" fill="#fbfcfe" stroke="#1f2937" stroke-width="1.2"/>
-<line x1="90" y1="450.0" x2="760" y2="450.0" stroke="#e5e7eb" stroke-width="1"/>
-<text x="82" y="454.0" text-anchor="end" fill="#111827" font-size="12">0</text>
-<line x1="90" y1="360.9" x2="760" y2="360.9" stroke="#e5e7eb" stroke-width="1"/>
-<text x="82" y="364.9" text-anchor="end" fill="#111827" font-size="12">0.20</text>
-<line x1="90" y1="271.8" x2="760" y2="271.8" stroke="#e5e7eb" stroke-width="1"/>
-<text x="82" y="275.8" text-anchor="end" fill="#111827" font-size="12">0.40</text>
-<line x1="90" y1="182.7" x2="760" y2="182.7" stroke="#e5e7eb" stroke-width="1"/>
-<text x="82" y="186.7" text-anchor="end" fill="#111827" font-size="12">0.60</text>
-<line x1="90" y1="93.6" x2="760" y2="93.6" stroke="#e5e7eb" stroke-width="1"/>
-<text x="82" y="97.6" text-anchor="end" fill="#111827" font-size="12">0.80</text>
-<line x1="145.8" y1="70" x2="145.8" y2="450" stroke="#e5e7eb" stroke-width="1"/>
-<text x="145.8" y="468" text-anchor="middle" fill="#111827" font-size="12">Static ISAC</text>
-<line x1="257.5" y1="70" x2="257.5" y2="450" stroke="#e5e7eb" stroke-width="1"/>
-<text x="257.5" y="468" text-anchor="middle" fill="#111827" font-size="12">Reactive</text>
-<line x1="369.2" y1="70" x2="369.2" y2="450" stroke="#e5e7eb" stroke-width="1"/>
-<text x="369.2" y="468" text-anchor="middle" fill="#111827" font-size="12">DT only</text>
-<line x1="480.8" y1="70" x2="480.8" y2="450" stroke="#e5e7eb" stroke-width="1"/>
-<text x="480.8" y="468" text-anchor="middle" fill="#111827" font-size="12">DT + QA</text>
-<line x1="592.5" y1="70" x2="592.5" y2="450" stroke="#e5e7eb" stroke-width="1"/>
-<text x="592.5" y="468" text-anchor="middle" fill="#111827" font-size="12">DT + Trust</text>
-<line x1="704.2" y1="70" x2="704.2" y2="450" stroke="#e5e7eb" stroke-width="1"/>
-<text x="704.2" y="468" text-anchor="middle" fill="#111827" font-size="12">Full (Proposed)</text>
-<text x="425.0" y="492" text-anchor="middle" fill="#111827" font-size="13" font-weight="600"></text>
-<text transform="translate(38,260.0) rotate(-90)" text-anchor="middle" fill="#111827" font-size="13" font-weight="600">Value</text>
-<rect x="96.7" y="245.7" width="30.8" height="204.3" fill="#1f4e79" rx="2"/>
-<text x="112.1" y="241.7" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.46</text>
-<rect x="208.4" y="250.7" width="30.8" height="199.3" fill="#1f4e79" rx="2"/>
-<text x="223.7" y="246.7" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.45</text>
-<rect x="320.0" y="233.7" width="30.8" height="216.3" fill="#1f4e79" rx="2"/>
-<text x="335.4" y="229.7" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.49</text>
-<rect x="431.7" y="179.1" width="30.8" height="270.9" fill="#1f4e79" rx="2"/>
-<text x="447.1" y="175.1" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.61</text>
-<rect x="543.4" y="222.0" width="30.8" height="228.0" fill="#1f4e79" rx="2"/>
-<text x="558.7" y="218.0" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.51</text>
-<rect x="655.0" y="173.0" width="30.8" height="277.0" fill="#1f4e79" rx="2"/>
-<text x="670.4" y="169.0" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.62</text>
-<rect x="129.5" y="221.3" width="30.8" height="228.7" fill="#27ae60" rx="2"/>
-<text x="144.8" y="217.3" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.51</text>
-<rect x="241.1" y="243.4" width="30.8" height="206.6" fill="#27ae60" rx="2"/>
-<text x="256.5" y="239.4" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.46</text>
-<rect x="352.8" y="135.1" width="30.8" height="314.9" fill="#27ae60" rx="2"/>
-<text x="368.2" y="131.1" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.71</text>
-<rect x="464.5" y="128.0" width="30.8" height="322.0" fill="#27ae60" rx="2"/>
-<text x="479.8" y="124.0" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.72</text>
-<rect x="576.1" y="139.1" width="30.8" height="310.9" fill="#27ae60" rx="2"/>
-<text x="591.5" y="135.1" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.70</text>
-<rect x="687.8" y="129.0" width="30.8" height="321.0" fill="#27ae60" rx="2"/>
-<text x="703.2" y="125.0" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.72</text>
-<rect x="162.2" y="245.4" width="30.8" height="204.6" fill="#c0392b" rx="2"/>
-<text x="177.6" y="241.4" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.46</text>
-<rect x="273.9" y="246.9" width="30.8" height="203.1" fill="#c0392b" rx="2"/>
-<text x="289.3" y="242.9" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.46</text>
-<rect x="385.5" y="269.8" width="30.8" height="180.2" fill="#c0392b" rx="2"/>
-<text x="400.9" y="265.8" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.40</text>
-<rect x="497.2" y="251.2" width="30.8" height="198.8" fill="#c0392b" rx="2"/>
-<text x="512.6" y="247.2" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.45</text>
-<rect x="608.9" y="267.4" width="30.8" height="182.6" fill="#c0392b" rx="2"/>
-<text x="624.3" y="263.4" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.41</text>
-<rect x="720.5" y="234.4" width="30.8" height="215.6" fill="#c0392b" rx="2"/>
-<text x="735.9" y="230.4" text-anchor="middle" fill="#111827" font-size="11" font-weight="600">0.48</text>
-<rect x="784" y="76" width="22" height="4" fill="#1f4e79" rx="2"/>
-<circle cx="795" cy="78" r="4" fill="#1f4e79"/>
-<text x="816" y="82" fill="#111827" font-size="12">Utility (unitless)</text>
-<rect x="784" y="98" width="22" height="4" fill="#27ae60" rx="2"/>
-<circle cx="795" cy="100" r="4" fill="#27ae60"/>
-<text x="816" y="104" fill="#111827" font-size="12">Detection P_d</text>
-<rect x="784" y="120" width="22" height="4" fill="#c0392b" rx="2"/>
-<circle cx="795" cy="122" r="4" fill="#c0392b"/>
-<text x="816" y="126" fill="#111827" font-size="12">Rate / 200 Mbps</text>
+<text x="450.0" y="36" text-anchor="middle" font-size="20" font-weight="800" fill="#0f172a">Baseline Comparison — Mean Utility (± std)</text>
+<text x="450.0" y="60" text-anchor="middle" font-size="13" fill="#475569">200 slots × 3 Monte-Carlo realisations  ·  p_anom = 0.04</text>
+<defs><linearGradient id="barGrad0" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#64748b"/><stop offset="1" stop-color="#4e5a6c"/></linearGradient><linearGradient id="barGrad1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#94a3b8"/><stop offset="1" stop-color="#737f8f"/></linearGradient><linearGradient id="barGrad2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0284c7"/><stop offset="1" stop-color="#01669b"/></linearGradient><linearGradient id="barGrad3" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#16a34a"/><stop offset="1" stop-color="#117f39"/></linearGradient><linearGradient id="barGrad4" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#602db8"/></linearGradient><linearGradient id="barGrad5" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c0392b"/><stop offset="1" stop-color="#952c21"/></linearGradient></defs>
+<g filter="url(#panelShadow)"><rect x="90" y="90" width="680" height="350" fill="#fdfefe" stroke="#cbd5e1" stroke-width="1"/></g><line x1="90" y1="412.8" x2="770" y2="412.8" stroke="#f1f5f9" stroke-width="0.6"/><line x1="90" y1="385.7" x2="770" y2="385.7" stroke="#f1f5f9" stroke-width="0.6"/><line x1="90" y1="331.4" x2="770" y2="331.4" stroke="#f1f5f9" stroke-width="0.6"/><line x1="90" y1="304.2" x2="770" y2="304.2" stroke="#f1f5f9" stroke-width="0.6"/><line x1="90" y1="249.9" x2="770" y2="249.9" stroke="#f1f5f9" stroke-width="0.6"/><line x1="90" y1="222.8" x2="770" y2="222.8" stroke="#f1f5f9" stroke-width="0.6"/><line x1="90" y1="168.5" x2="770" y2="168.5" stroke="#f1f5f9" stroke-width="0.6"/><line x1="90" y1="141.3" x2="770" y2="141.3" stroke="#f1f5f9" stroke-width="0.6"/><line x1="90" y1="440.0" x2="770" y2="440.0" stroke="#e2e8f0" stroke-width="1"/><text x="80" y="444.0" text-anchor="end" fill="#475569" font-size="11">0</text><line x1="90" y1="358.5" x2="770" y2="358.5" stroke="#e2e8f0" stroke-width="1"/><text x="80" y="362.5" text-anchor="end" fill="#475569" font-size="11">0.200</text><line x1="90" y1="277.1" x2="770" y2="277.1" stroke="#e2e8f0" stroke-width="1"/><text x="80" y="281.1" text-anchor="end" fill="#475569" font-size="11">0.400</text><line x1="90" y1="195.6" x2="770" y2="195.6" stroke="#e2e8f0" stroke-width="1"/><text x="80" y="199.6" text-anchor="end" fill="#475569" font-size="11">0.600</text><line x1="90" y1="114.2" x2="770" y2="114.2" stroke="#e2e8f0" stroke-width="1"/><text x="80" y="118.2" text-anchor="end" fill="#475569" font-size="11">0.800</text><line x1="146.7" y1="90" x2="146.7" y2="440" stroke="#e2e8f0" stroke-width="1"/><text x="146.7" y="458" text-anchor="middle" fill="#475569" font-size="11">Static ISAC</text><line x1="260.0" y1="90" x2="260.0" y2="440" stroke="#e2e8f0" stroke-width="1"/><text x="260.0" y="458" text-anchor="middle" fill="#475569" font-size="11">Reactive</text><line x1="373.3" y1="90" x2="373.3" y2="440" stroke="#e2e8f0" stroke-width="1"/><text x="373.3" y="458" text-anchor="middle" fill="#475569" font-size="11">DT only</text><line x1="486.7" y1="90" x2="486.7" y2="440" stroke="#e2e8f0" stroke-width="1"/><text x="486.7" y="458" text-anchor="middle" fill="#475569" font-size="11">DT + QA</text><line x1="600.0" y1="90" x2="600.0" y2="440" stroke="#e2e8f0" stroke-width="1"/><text x="600.0" y="458" text-anchor="middle" fill="#475569" font-size="11">DT + Trust</text><line x1="713.3" y1="90" x2="713.3" y2="440" stroke="#e2e8f0" stroke-width="1"/><text x="713.3" y="458" text-anchor="middle" fill="#475569" font-size="11">Full (Proposed)</text><text transform="translate(38,265.0) rotate(-90)" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="600">Mean utility  (0 – 1)</text>
+<rect x="111.5" y="253.2" width="70.3" height="186.8" fill="url(#barGrad0)" stroke="#465161" stroke-width="1" rx="3"/>
+<g stroke="#0f172a" stroke-width="1.4" fill="none"><line x1="146.7" y1="231.0" x2="146.7" y2="275.5"/><line x1="142.2" y1="231.0" x2="151.2" y2="231.0"/><line x1="142.2" y1="275.5" x2="151.2" y2="275.5"/></g>
+<text x="146.7" y="243.2" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">0.459</text>
+<rect x="224.9" y="257.8" width="70.3" height="182.2" fill="url(#barGrad1)" stroke="#677280" stroke-width="1" rx="3"/>
+<g stroke="#0f172a" stroke-width="1.4" fill="none"><line x1="260.0" y1="235.4" x2="260.0" y2="280.1"/><line x1="255.5" y1="235.4" x2="264.5" y2="235.4"/><line x1="255.5" y1="280.1" x2="264.5" y2="280.1"/></g>
+<text x="260.0" y="247.8" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">0.447</text>
+<rect x="338.2" y="242.2" width="70.3" height="197.8" fill="url(#barGrad2)" stroke="#015c8b" stroke-width="1" rx="3"/>
+<g stroke="#0f172a" stroke-width="1.4" fill="none"><line x1="373.3" y1="227.3" x2="373.3" y2="257.2"/><line x1="368.8" y1="227.3" x2="377.8" y2="227.3"/><line x1="368.8" y1="257.2" x2="377.8" y2="257.2"/></g>
+<text x="373.3" y="232.2" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">0.486</text>
+<rect x="451.5" y="192.4" width="70.3" height="247.6" fill="url(#barGrad3)" stroke="#0f7233" stroke-width="1" rx="3"/>
+<g stroke="#0f172a" stroke-width="1.4" fill="none"><line x1="486.7" y1="161.1" x2="486.7" y2="223.6"/><line x1="482.2" y1="161.1" x2="491.2" y2="161.1"/><line x1="482.2" y1="223.6" x2="491.2" y2="223.6"/></g>
+<text x="486.7" y="182.4" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">0.608</text>
+<rect x="564.9" y="231.5" width="70.3" height="208.5" fill="url(#barGrad4)" stroke="#5628a5" stroke-width="1" rx="3"/>
+<g stroke="#0f172a" stroke-width="1.4" fill="none"><line x1="600.0" y1="215.6" x2="600.0" y2="247.4"/><line x1="595.5" y1="215.6" x2="604.5" y2="215.6"/><line x1="595.5" y1="247.4" x2="604.5" y2="247.4"/></g>
+<text x="600.0" y="221.5" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">0.512</text>
+<rect x="678.2" y="186.8" width="70.3" height="253.2" fill="url(#barGrad5)" stroke="#86271e" stroke-width="1" rx="3"/>
+<g stroke="#0f172a" stroke-width="1.4" fill="none"><line x1="713.3" y1="153.1" x2="713.3" y2="220.4"/><line x1="708.8" y1="153.1" x2="717.8" y2="153.1"/><line x1="708.8" y1="220.4" x2="717.8" y2="220.4"/></g>
+<text x="713.3" y="176.8" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="700">0.622</text>
+<polygon points="713.3,147.8 715.7,153.5 721.9,154.0 717.2,158.0 718.6,164.1 713.3,160.8 708.0,164.1 709.5,158.0 704.8,154.0 711.0,153.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1"/>
+<text x="713.3" y="142.8" text-anchor="middle" fill="#b45309" font-size="11" font-weight="700">Proposed (best)</text>
 </svg>

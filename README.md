@@ -121,7 +121,11 @@ python tools/build_figures.py        # stdlib-only SVG fallback (no deps)
 | **Full (Proposed)** | **0.622** | **96.8** | **0.721** | **0.44** | **0.99** | **249.0** |
 
 <p align="center">
-  <img src="figures/fig_baseline_bars.svg" alt="Baseline bar chart" width="100%"/>
+  <img src="figures/fig_baseline_bars.svg" alt="Baseline bar chart — utility with error bars" width="100%"/>
+</p>
+
+<p align="center">
+  <img src="figures/fig_baseline_dashboard.svg" alt="Baseline dashboard — multi-metric" width="100%"/>
 </p>
 
 ### 2 · Anomaly-rate sweep *(Fig. 6)*
