@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this simulator in your research, please cite the paper and this repository."
+title: "Trust-Aware Quantum-Assisted Digital-Twin Control for Secure ISAC in 6G Open-RAN — Reference Simulator"
+authors:
+  - family-names: "Al-Karawi"
+    given-names: "Yassir Ameen Ahmed"
+    affiliation: "University of Diyala, Iraq"
+    email: "yassir@uodiyala.edu.iq"
+license: MIT
+repository-code: "https://github.com/YassirALKarawi/trust-aware-isac-sim"
+version: "1.0.0"
+date-released: "2026-04-18"
+keywords:
+  - ISAC
+  - 6G
+  - Open RAN
+  - digital twin
+  - trust-aware control
+  - quantum-assisted
+  - variational quantum circuit
+  - mmWave
+  - JT-RZF precoding
+  - Swerling-I
+preferred-citation:
+  type: article
+  title: "Trust-Aware Quantum-Assisted Digital Twin Control for Secure and Adaptive ISAC in 6G Open RAN"
+  authors:
+    - family-names: "Al-Karawi"
+      given-names: "Yassir Ameen Ahmed"
+  journal: "IEEE Journal on Selected Areas in Communications"
+  year: 2026
+  notes: "Submitted"

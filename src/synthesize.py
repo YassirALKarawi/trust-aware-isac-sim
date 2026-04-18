@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import numpy as np
 
-R = Path("/home/claude/sim/results")
+R = Path(__file__).resolve().parent.parent / "results"
 
 
 def load(name):

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" width="880" height="520" font-family="'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="14" role="img" aria-label="Scalability vs. Number of Targets">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="440.0" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">Scalability vs. Number of Targets</text>
+<rect x="90" y="70" width="670" height="380" fill="#fbfcfe" stroke="#1f2937" stroke-width="1.2"/>
+<line x1="90" y1="438.0" x2="760" y2="438.0" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="442.0" text-anchor="end" fill="#111827" font-size="12">0.22</text>
+<line x1="90" y1="340.9" x2="760" y2="340.9" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="344.9" text-anchor="end" fill="#111827" font-size="12">0.24</text>
+<line x1="90" y1="243.8" x2="760" y2="243.8" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="247.8" text-anchor="end" fill="#111827" font-size="12">0.26</text>
+<line x1="90" y1="146.6" x2="760" y2="146.6" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="150.6" text-anchor="end" fill="#111827" font-size="12">0.28</text>
+<line x1="201.7" y1="70" x2="201.7" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="201.7" y="468" text-anchor="middle" fill="#111827" font-size="12">5</text>
+<line x1="387.8" y1="70" x2="387.8" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="387.8" y="468" text-anchor="middle" fill="#111827" font-size="12">10</text>
+<line x1="573.9" y1="70" x2="573.9" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="573.9" y="468" text-anchor="middle" fill="#111827" font-size="12">15</text>
+<line x1="760.0" y1="70" x2="760.0" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="760.0" y="468" text-anchor="middle" fill="#111827" font-size="12">20</text>
+<text x="425.0" y="492" text-anchor="middle" fill="#111827" font-size="13" font-weight="600">Targets  K</text>
+<text transform="translate(38,260.0) rotate(-90)" text-anchor="middle" fill="#111827" font-size="13" font-weight="600">Mean utility</text>
+<polyline points="90.0,430.0 201.7,215.3 387.8,237.7 573.9,259.5 760.0,96.7" fill="none" stroke="#7f8c8d" stroke-width="2.5" />
+<circle cx="90.0" cy="430.0" r="3.5" fill="#ffffff" stroke="#7f8c8d" stroke-width="2"/>
+<circle cx="201.7" cy="215.3" r="3.5" fill="#ffffff" stroke="#7f8c8d" stroke-width="2"/>
+<circle cx="387.8" cy="237.7" r="3.5" fill="#ffffff" stroke="#7f8c8d" stroke-width="2"/>
+<circle cx="573.9" cy="259.5" r="3.5" fill="#ffffff" stroke="#7f8c8d" stroke-width="2"/>
+<circle cx="760.0" cy="96.7" r="3.5" fill="#ffffff" stroke="#7f8c8d" stroke-width="2"/>
+<polyline points="90.0,286.5 201.7,392.4 387.8,218.6 573.9,207.7 760.0,327.2" fill="none" stroke="#3498db" stroke-width="2.5" />
+<circle cx="90.0" cy="286.5" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="201.7" cy="392.4" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="387.8" cy="218.6" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="573.9" cy="207.7" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="760.0" cy="327.2" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<polyline points="90.0,183.7 201.7,166.0 387.8,203.1 573.9,327.0 760.0,182.2" fill="none" stroke="#c0392b" stroke-width="2.5" />
+<circle cx="90.0" cy="183.7" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="201.7" cy="166.0" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="387.8" cy="203.1" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="573.9" cy="327.0" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="760.0" cy="182.2" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<rect x="784" y="76" width="22" height="4" fill="#7f8c8d" rx="2"/>
+<circle cx="795" cy="78" r="4" fill="#7f8c8d"/>
+<text x="816" y="82" fill="#111827" font-size="12">Static ISAC</text>
+<rect x="784" y="98" width="22" height="4" fill="#3498db" rx="2"/>
+<circle cx="795" cy="100" r="4" fill="#3498db"/>
+<text x="816" y="104" fill="#111827" font-size="12">DT only</text>
+<rect x="784" y="120" width="22" height="4" fill="#c0392b" rx="2"/>
+<circle cx="795" cy="122" r="4" fill="#c0392b"/>
+<text x="816" y="126" fill="#111827" font-size="12">Full (Proposed)</text>
+</svg>
