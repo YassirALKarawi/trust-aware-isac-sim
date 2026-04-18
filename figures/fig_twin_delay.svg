@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" width="880" height="520" font-family="'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="14" role="img" aria-label="Robustness to Digital-Twin Synchronisation Delay">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="440.0" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">Robustness to Digital-Twin Synchronisation Delay</text>
+<rect x="90" y="70" width="670" height="380" fill="#fbfcfe" stroke="#1f2937" stroke-width="1.2"/>
+<line x1="90" y1="384.4" x2="760" y2="384.4" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="388.4" text-anchor="end" fill="#111827" font-size="12">0.22</text>
+<line x1="90" y1="315.7" x2="760" y2="315.7" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="319.7" text-anchor="end" fill="#111827" font-size="12">0.23</text>
+<line x1="90" y1="246.9" x2="760" y2="246.9" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="250.9" text-anchor="end" fill="#111827" font-size="12">0.24</text>
+<line x1="90" y1="178.1" x2="760" y2="178.1" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="182.1" text-anchor="end" fill="#111827" font-size="12">0.25</text>
+<line x1="90" y1="109.3" x2="760" y2="109.3" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="113.3" text-anchor="end" fill="#111827" font-size="12">0.26</text>
+<line x1="164.4" y1="70" x2="164.4" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="164.4" y="468" text-anchor="middle" fill="#111827" font-size="12">2</text>
+<line x1="313.3" y1="70" x2="313.3" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="313.3" y="468" text-anchor="middle" fill="#111827" font-size="12">4</text>
+<line x1="462.2" y1="70" x2="462.2" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="462.2" y="468" text-anchor="middle" fill="#111827" font-size="12">6</text>
+<line x1="611.1" y1="70" x2="611.1" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="611.1" y="468" text-anchor="middle" fill="#111827" font-size="12">8</text>
+<line x1="760.0" y1="70" x2="760.0" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="760.0" y="468" text-anchor="middle" fill="#111827" font-size="12">10</text>
+<text x="425.0" y="492" text-anchor="middle" fill="#111827" font-size="13" font-weight="600">Synchronisation delay  τ  (slots)</text>
+<text transform="translate(38,260.0) rotate(-90)" text-anchor="middle" fill="#111827" font-size="13" font-weight="600">Mean utility</text>
+<polyline points="90.0,380.1 164.4,388.7 313.3,399.8 462.2,404.2 611.1,407.4 760.0,430.0" fill="none" stroke="#3498db" stroke-width="2.5" />
+<circle cx="90.0" cy="380.1" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="164.4" cy="388.7" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="313.3" cy="399.8" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="462.2" cy="404.2" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="611.1" cy="407.4" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="760.0" cy="430.0" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<polyline points="90.0,204.8 164.4,208.9 313.3,215.9 462.2,209.2 611.1,206.2 760.0,211.5" fill="none" stroke="#27ae60" stroke-width="2.5" />
+<circle cx="90.0" cy="204.8" r="3.5" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+<circle cx="164.4" cy="208.9" r="3.5" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+<circle cx="313.3" cy="215.9" r="3.5" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+<circle cx="462.2" cy="209.2" r="3.5" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+<circle cx="611.1" cy="206.2" r="3.5" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+<circle cx="760.0" cy="211.5" r="3.5" fill="#ffffff" stroke="#27ae60" stroke-width="2"/>
+<polyline points="90.0,103.6 164.4,108.8 313.3,114.8 462.2,105.6 611.1,96.7 760.0,101.0" fill="none" stroke="#c0392b" stroke-width="2.5" />
+<circle cx="90.0" cy="103.6" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="164.4" cy="108.8" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="313.3" cy="114.8" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="462.2" cy="105.6" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="611.1" cy="96.7" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="760.0" cy="101.0" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<rect x="784" y="76" width="22" height="4" fill="#3498db" rx="2"/>
+<circle cx="795" cy="78" r="4" fill="#3498db"/>
+<text x="816" y="82" fill="#111827" font-size="12">DT only</text>
+<rect x="784" y="98" width="22" height="4" fill="#27ae60" rx="2"/>
+<circle cx="795" cy="100" r="4" fill="#27ae60"/>
+<text x="816" y="104" fill="#111827" font-size="12">DT + QA</text>
+<rect x="784" y="120" width="22" height="4" fill="#c0392b" rx="2"/>
+<circle cx="795" cy="122" r="4" fill="#c0392b"/>
+<text x="816" y="126" fill="#111827" font-size="12">Full (Proposed)</text>
+</svg>

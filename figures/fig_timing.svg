@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 460" width="1040" height="460" font-family="'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif" role="img" aria-label="Per-slot timing diagram">
+  <defs>
+    <marker id="arT" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2937"/>
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="520" y="38" text-anchor="middle" font-size="22" font-weight="800" fill="#111827">
+    Per-Slot Timing  —  near-RT 10 ms loop
+  </text>
+  <text x="520" y="60" text-anchor="middle" font-size="13" fill="#4b5563">
+    every slot: sense → filter twin → update trust → screen candidates → gate → precode → transmit
+  </text>
+
+  <!-- timeline axis -->
+  <g transform="translate(60,200)">
+    <line x1="0" y1="0" x2="920" y2="0" stroke="#111827" stroke-width="2" marker-end="url(#arT)"/>
+    <text x="920" y="-8" text-anchor="end" font-size="12" fill="#111827">t  (continuous)</text>
+    <!-- ticks at 0,2,4,6,8,10ms -->
+    <g font-size="11" fill="#6b7280">
+      <line x1="0" y1="-4" x2="0" y2="4" stroke="#111827"/><text x="0" y="22" text-anchor="middle">0</text>
+      <line x1="180" y1="-4" x2="180" y2="4" stroke="#111827"/><text x="180" y="22" text-anchor="middle">2 ms</text>
+      <line x1="360" y1="-4" x2="360" y2="4" stroke="#111827"/><text x="360" y="22" text-anchor="middle">4 ms</text>
+      <line x1="540" y1="-4" x2="540" y2="4" stroke="#111827"/><text x="540" y="22" text-anchor="middle">6 ms</text>
+      <line x1="720" y1="-4" x2="720" y2="4" stroke="#111827"/><text x="720" y="22" text-anchor="middle">8 ms</text>
+      <line x1="900" y1="-4" x2="900" y2="4" stroke="#111827"/><text x="900" y="22" text-anchor="middle">10 ms</text>
+    </g>
+
+    <!-- blocks -->
+    <g font-size="11">
+      <g>
+        <rect x="0" y="-70" width="150" height="50" rx="6" fill="#dbeafe" stroke="#1f4e79"/>
+        <text x="75" y="-45" text-anchor="middle" font-weight="700" fill="#1f4e79">Sensing CPI</text>
+        <text x="75" y="-28" text-anchor="middle" fill="#1f4e79">512 pulses · 400 MHz</text>
+      </g>
+      <g>
+        <rect x="150" y="-70" width="120" height="50" rx="6" fill="#fee2e2" stroke="#c0392b"/>
+        <text x="210" y="-45" text-anchor="middle" font-weight="700" fill="#c0392b">Twin sync</text>
+        <text x="210" y="-28" text-anchor="middle" fill="#c0392b">τ = 2 slot buffer</text>
+      </g>
+      <g>
+        <rect x="270" y="-70" width="130" height="50" rx="6" fill="#dcfce7" stroke="#15803d"/>
+        <text x="335" y="-45" text-anchor="middle" font-weight="700" fill="#15803d">Trust update</text>
+        <text x="335" y="-28" text-anchor="middle" fill="#15803d">Bayesian-EWMA</text>
+      </g>
+      <g>
+        <rect x="400" y="-70" width="160" height="50" rx="6" fill="#ede9fe" stroke="#6d28d9"/>
+        <text x="480" y="-45" text-anchor="middle" font-weight="700" fill="#6d28d9">QA shortlist</text>
+        <text x="480" y="-28" text-anchor="middle" fill="#6d28d9">M=50 → M_s=12</text>
+      </g>
+      <g>
+        <rect x="560" y="-70" width="130" height="50" rx="6" fill="#fef3c7" stroke="#a16207"/>
+        <text x="625" y="-45" text-anchor="middle" font-weight="700" fill="#a16207">Gate &amp; blend</text>
+        <text x="625" y="-28" text-anchor="middle" fill="#a16207">a* = T·a_opt + …</text>
+      </g>
+      <g>
+        <rect x="690" y="-70" width="120" height="50" rx="6" fill="#e0f2fe" stroke="#0369a1"/>
+        <text x="750" y="-45" text-anchor="middle" font-weight="700" fill="#0369a1">JT-RZF</text>
+        <text x="750" y="-28" text-anchor="middle" fill="#0369a1">256-ant precoder</text>
+      </g>
+      <g>
+        <rect x="810" y="-70" width="110" height="50" rx="6" fill="#f3f4f6" stroke="#111827"/>
+        <text x="865" y="-45" text-anchor="middle" font-weight="700" fill="#111827">Transmit</text>
+        <text x="865" y="-28" text-anchor="middle" fill="#111827">downlink + sense</text>
+      </g>
+    </g>
+
+    <!-- return arrow to next slot -->
+    <path d="M 920 60 Q 960 60 960 -120 Q 960 -180 300 -180 Q 0 -180 0 -120 Q 0 -90 0 -80"
+          fill="none" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arT)"/>
+    <text x="480" y="-192" text-anchor="middle" font-size="12" fill="#4b5563" font-style="italic">
+      next slot  —  telemetry queued for twin, trust carried over
+    </text>
+  </g>
+
+  <!-- Complexity bar -->
+  <g transform="translate(60,340)">
+    <rect width="920" height="90" rx="12" fill="#f9fafb" stroke="#d1d5db"/>
+    <text x="16" y="26" font-size="13" font-weight="700" fill="#111827">Runtime budget  (measured)</text>
+    <g font-size="12" fill="#111827">
+      <text x="16" y="52">simulator end-to-end:</text>
+      <rect x="170" y="40" width="340" height="16" fill="#1f4e79"/>
+      <text x="340" y="52" text-anchor="middle" fill="#ffffff" font-weight="700">31 ms  (CPython 3.10 · single core)</text>
+
+      <text x="16" y="76">deployed inference:</text>
+      <rect x="170" y="64" width="40" height="16" fill="#27ae60"/>
+      <text x="218" y="76" fill="#111827" font-weight="700">1.8 ms</text>
+      <text x="400" y="76" fill="#6b7280" font-style="italic">
+        → easily fits the 10 ms near-RT slot (≈18% headroom budget at deployed scale)
+      </text>
+    </g>
+  </g>
+</svg>

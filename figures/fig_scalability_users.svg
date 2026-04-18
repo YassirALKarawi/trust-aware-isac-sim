@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 520" width="880" height="520" font-family="'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="14" role="img" aria-label="Scalability vs. Number of Users">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="440.0" y="30" text-anchor="middle" font-size="18" font-weight="700" fill="#111827">Scalability vs. Number of Users</text>
+<rect x="90" y="70" width="670" height="380" fill="#fbfcfe" stroke="#1f2937" stroke-width="1.2"/>
+<line x1="90" y1="410.3" x2="760" y2="410.3" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="414.3" text-anchor="end" fill="#111827" font-size="12">0.20</text>
+<line x1="90" y1="322.2" x2="760" y2="322.2" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="326.2" text-anchor="end" fill="#111827" font-size="12">0.30</text>
+<line x1="90" y1="234.2" x2="760" y2="234.2" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="238.2" text-anchor="end" fill="#111827" font-size="12">0.40</text>
+<line x1="90" y1="146.2" x2="760" y2="146.2" stroke="#e5e7eb" stroke-width="1"/>
+<text x="82" y="150.2" text-anchor="end" fill="#111827" font-size="12">0.50</text>
+<line x1="90.0" y1="70" x2="90.0" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="90.0" y="468" text-anchor="middle" fill="#111827" font-size="12">10</text>
+<line x1="224.0" y1="70" x2="224.0" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="224.0" y="468" text-anchor="middle" fill="#111827" font-size="12">20</text>
+<line x1="358.0" y1="70" x2="358.0" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="358.0" y="468" text-anchor="middle" fill="#111827" font-size="12">30</text>
+<line x1="492.0" y1="70" x2="492.0" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="492.0" y="468" text-anchor="middle" fill="#111827" font-size="12">40</text>
+<line x1="626.0" y1="70" x2="626.0" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="626.0" y="468" text-anchor="middle" fill="#111827" font-size="12">50</text>
+<line x1="760.0" y1="70" x2="760.0" y2="450" stroke="#e5e7eb" stroke-width="1"/>
+<text x="760.0" y="468" text-anchor="middle" fill="#111827" font-size="12">60</text>
+<text x="425.0" y="492" text-anchor="middle" fill="#111827" font-size="13" font-weight="600">Users  U</text>
+<text transform="translate(38,260.0) rotate(-90)" text-anchor="middle" fill="#111827" font-size="13" font-weight="600">Mean utility</text>
+<polyline points="90.0,129.7 224.0,125.6 492.0,385.7 760.0,408.3" fill="none" stroke="#7f8c8d" stroke-width="2.5" />
+<circle cx="90.0" cy="129.7" r="3.5" fill="#ffffff" stroke="#7f8c8d" stroke-width="2"/>
+<circle cx="224.0" cy="125.6" r="3.5" fill="#ffffff" stroke="#7f8c8d" stroke-width="2"/>
+<circle cx="492.0" cy="385.7" r="3.5" fill="#ffffff" stroke="#7f8c8d" stroke-width="2"/>
+<circle cx="760.0" cy="408.3" r="3.5" fill="#ffffff" stroke="#7f8c8d" stroke-width="2"/>
+<polyline points="90.0,140.7 224.0,96.7 492.0,385.5 760.0,430.0" fill="none" stroke="#3498db" stroke-width="2.5" />
+<circle cx="90.0" cy="140.7" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="224.0" cy="96.7" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="492.0" cy="385.5" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<circle cx="760.0" cy="430.0" r="3.5" fill="#ffffff" stroke="#3498db" stroke-width="2"/>
+<polyline points="90.0,146.9 224.0,152.0 492.0,349.4 760.0,416.1" fill="none" stroke="#c0392b" stroke-width="2.5" />
+<circle cx="90.0" cy="146.9" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="224.0" cy="152.0" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="492.0" cy="349.4" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<circle cx="760.0" cy="416.1" r="3.5" fill="#ffffff" stroke="#c0392b" stroke-width="2"/>
+<rect x="784" y="76" width="22" height="4" fill="#7f8c8d" rx="2"/>
+<circle cx="795" cy="78" r="4" fill="#7f8c8d"/>
+<text x="816" y="82" fill="#111827" font-size="12">Static ISAC</text>
+<rect x="784" y="98" width="22" height="4" fill="#3498db" rx="2"/>
+<circle cx="795" cy="100" r="4" fill="#3498db"/>
+<text x="816" y="104" fill="#111827" font-size="12">DT only</text>
+<rect x="784" y="120" width="22" height="4" fill="#c0392b" rx="2"/>
+<circle cx="795" cy="122" r="4" fill="#c0392b"/>
+<text x="816" y="126" fill="#111827" font-size="12">Full (Proposed)</text>
+</svg>

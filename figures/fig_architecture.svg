@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 720" width="1120" height="720" font-family="'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif" role="img" aria-label="Trust-Aware Quantum-Assisted ISAC Architecture">
+  <defs>
+    <linearGradient id="gPhy" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#eaf2fb"/><stop offset="1" stop-color="#cfe0f3"/>
+    </linearGradient>
+    <linearGradient id="gTwin" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff0e8"/><stop offset="1" stop-color="#ffd5bf"/>
+    </linearGradient>
+    <linearGradient id="gTrust" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#eefbea"/><stop offset="1" stop-color="#cdeec0"/>
+    </linearGradient>
+    <linearGradient id="gCtrl" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#f5eafc"/><stop offset="1" stop-color="#dcc0f0"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2937"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="2" result="off"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="560" y="36" text-anchor="middle" font-size="22" font-weight="800" fill="#111827">
+    Trust-Aware Quantum-Assisted Digital-Twin ISAC Control Loop
+  </text>
+  <text x="560" y="58" text-anchor="middle" font-size="13" fill="#4b5563">
+    cell-free 6G Open-RAN with 4 coordinated base stations (256-antenna aggregate array, mmWave 28 GHz)
+  </text>
+
+  <!-- Physical Layer (bottom) -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="540" width="1000" height="140" rx="14" fill="url(#gPhy)" stroke="#1f4e79" stroke-width="1.5"/>
+  </g>
+  <text x="80" y="568" font-size="15" font-weight="700" fill="#1f4e79">① Physical Layer  —  True environment</text>
+  <g font-size="12" fill="#1f2937">
+    <!-- BS icons -->
+    <g transform="translate(110,600)">
+      <rect width="120" height="60" rx="8" fill="#ffffff" stroke="#1f4e79"/>
+      <text x="60" y="22" text-anchor="middle" font-weight="600">BS 1 · 8×8 UPA</text>
+      <text x="60" y="42" text-anchor="middle" fill="#6b7280">40 dBm · RZF</text>
+    </g>
+    <g transform="translate(250,600)">
+      <rect width="120" height="60" rx="8" fill="#ffffff" stroke="#1f4e79"/>
+      <text x="60" y="22" text-anchor="middle" font-weight="600">BS 2 · 8×8 UPA</text>
+      <text x="60" y="42" text-anchor="middle" fill="#6b7280">coordinated</text>
+    </g>
+    <g transform="translate(390,600)">
+      <rect width="120" height="60" rx="8" fill="#ffffff" stroke="#1f4e79"/>
+      <text x="60" y="22" text-anchor="middle" font-weight="600">BS 3 · 8×8 UPA</text>
+      <text x="60" y="42" text-anchor="middle" fill="#6b7280">JT-RZF</text>
+    </g>
+    <g transform="translate(530,600)">
+      <rect width="120" height="60" rx="8" fill="#ffffff" stroke="#1f4e79"/>
+      <text x="60" y="22" text-anchor="middle" font-weight="600">BS 4 · 8×8 UPA</text>
+      <text x="60" y="42" text-anchor="middle" fill="#6b7280">256-ant aggregate</text>
+    </g>
+    <g transform="translate(700,600)">
+      <rect width="140" height="60" rx="8" fill="#ffffff" stroke="#27ae60"/>
+      <text x="70" y="22" text-anchor="middle" font-weight="600">40 users  ·  UE</text>
+      <text x="70" y="42" text-anchor="middle" fill="#6b7280">Rayleigh 1.2 m/s</text>
+    </g>
+    <g transform="translate(860,600)">
+      <rect width="140" height="60" rx="8" fill="#ffffff" stroke="#c0392b"/>
+      <text x="70" y="22" text-anchor="middle" font-weight="600">10 targets</text>
+      <text x="70" y="42" text-anchor="middle" fill="#6b7280">Swerling-I · 400 MHz</text>
+    </g>
+  </g>
+
+  <!-- Digital Twin (left centre) -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="330" width="300" height="170" rx="14" fill="url(#gTwin)" stroke="#c0392b" stroke-width="1.5"/>
+  </g>
+  <text x="80" y="358" font-size="15" font-weight="700" fill="#c0392b">② Digital Twin</text>
+  <g font-size="12" fill="#1f2937">
+    <text x="80" y="382">Delayed channel / mobility / sensing state</text>
+    <text x="80" y="402">Kalman-like filter,  τ_sync = 2 slots</text>
+    <text x="80" y="422">Fidelity ε(t) = ‖x̂_twin − x_true‖</text>
+    <text x="80" y="442" font-style="italic" fill="#6b7280">Provides H_method to the controller</text>
+    <rect x="78" y="460" width="244" height="28" rx="6" fill="#ffffff" stroke="#c0392b" stroke-dasharray="4 3"/>
+    <text x="200" y="479" text-anchor="middle" font-size="11" fill="#c0392b">telemetry queue · spoofing targets this</text>
+  </g>
+
+  <!-- Anomaly Injector -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="200" width="300" height="110" rx="14" fill="#fff4f4" stroke="#c0392b" stroke-width="1.5"/>
+  </g>
+  <text x="80" y="228" font-size="15" font-weight="700" fill="#c0392b">③ Anomaly Injector</text>
+  <g font-size="12" fill="#1f2937">
+    <text x="80" y="252">Poisson onset  ·  p = 0.04  /  slot</text>
+    <text x="80" y="272">Geometric duration  ·  mean 40 slots</text>
+    <text x="80" y="292">kinds = {jam +15 dB, spoof ×10, mixed}</text>
+  </g>
+
+  <!-- Trust Process -->
+  <g filter="url(#shadow)">
+    <rect x="400" y="330" width="310" height="170" rx="14" fill="url(#gTrust)" stroke="#27ae60" stroke-width="1.5"/>
+  </g>
+  <text x="420" y="358" font-size="15" font-weight="700" fill="#15803d">④ Trust Process (Bayesian-EWMA)</text>
+  <g font-size="12" fill="#1f2937">
+    <text x="420" y="382">log-likelihood evidence  ℓ(t), clipped</text>
+    <text x="420" y="402">T(t) = αT(t−1) + (1−α)σ(ℓ(t))</text>
+    <text x="420" y="422">α = 0.90,  λ_clip = 3</text>
+    <text x="420" y="446" font-weight="600" fill="#15803d">Trust floor  T_safe = 0.30</text>
+    <rect x="418" y="460" width="274" height="28" rx="6" fill="#ffffff" stroke="#15803d" stroke-dasharray="4 3"/>
+    <text x="555" y="479" text-anchor="middle" font-size="11" fill="#15803d">
+      below floor → hard safe-fallback action
+    </text>
+  </g>
+
+  <!-- Quantum-Assisted Screener -->
+  <g filter="url(#shadow)">
+    <rect x="400" y="200" width="310" height="110" rx="14" fill="#f7fbff" stroke="#1f4e79" stroke-width="1.5"/>
+  </g>
+  <text x="420" y="228" font-size="15" font-weight="700" fill="#1f4e79">⑤ Quantum-Assisted Screener</text>
+  <g font-size="12" fill="#1f2937">
+    <text x="420" y="252">Classical deterministic surrogate of VQC</text>
+    <text x="420" y="272">M = 50 candidates  →  M_s = 12 shortlist</text>
+    <text x="420" y="292">Online-trainable scorer · &lt;2 ms / slot</text>
+  </g>
+
+  <!-- Trust-Aware Gate -->
+  <g filter="url(#shadow)">
+    <rect x="750" y="330" width="310" height="170" rx="14" fill="url(#gCtrl)" stroke="#8e44ad" stroke-width="1.5"/>
+  </g>
+  <text x="770" y="358" font-size="15" font-weight="700" fill="#6d28d9">⑥ Trust-Aware Gate &amp; Controller</text>
+  <g font-size="12" fill="#1f2937">
+    <text x="770" y="382">a*  =  T(t) · a_optimal  +  (1−T(t)) · a_safe</text>
+    <text x="770" y="402">chooses ρ_sense, P, BW per slot</text>
+    <text x="770" y="422">builds JT-RZF precoder over 256 ant</text>
+    <text x="770" y="446" font-weight="600" fill="#6d28d9">Near-RT loop  ·  10 ms</text>
+    <rect x="768" y="460" width="274" height="28" rx="6" fill="#ffffff" stroke="#6d28d9" stroke-dasharray="4 3"/>
+    <text x="905" y="479" text-anchor="middle" font-size="11" fill="#6d28d9">
+      a_safe ≡ Static ISAC  (ρ=0.3, P=1, BW=1)
+    </text>
+  </g>
+
+  <!-- Utility output -->
+  <g filter="url(#shadow)">
+    <rect x="750" y="200" width="310" height="110" rx="14" fill="#fffbea" stroke="#c78a04" stroke-width="1.5"/>
+  </g>
+  <text x="770" y="228" font-size="15" font-weight="700" fill="#a16207">⑦ Utility  U(t)</text>
+  <g font-size="12" fill="#1f2937">
+    <text x="770" y="252">U = 0.4·R̂ + 0.3·P̂_d + 0.2·T_gt − 0.1·Ê</text>
+    <text x="770" y="272">Tracks rate, detection, security, energy</text>
+    <text x="770" y="292" fill="#a16207" font-weight="600">Full framework peak U = 0.622</text>
+  </g>
+
+  <!-- Arrows -->
+  <g stroke="#1f2937" stroke-width="2" fill="none">
+    <!-- physical → twin (telemetry) -->
+    <path d="M210,540 L210,500" marker-end="url(#arrow)"/>
+    <text x="224" y="524" font-size="11" fill="#1f2937">y(t-τ)</text>
+    <!-- twin → trust -->
+    <path d="M360,415 L400,415" marker-end="url(#arrow)"/>
+    <text x="370" y="406" font-size="11">x̂_twin</text>
+    <!-- anomaly → twin -->
+    <path d="M210,310 L210,330" marker-end="url(#arrowRed)" stroke="#c0392b"/>
+    <text x="222" y="325" font-size="11" fill="#c0392b">jam / spoof</text>
+    <!-- anomaly → trust evidence -->
+    <path d="M360,255 C480,255 520,300 555,330" marker-end="url(#arrowRed)" stroke="#c0392b" stroke-dasharray="5 3"/>
+    <!-- trust → gate -->
+    <path d="M710,415 L750,415" marker-end="url(#arrow)"/>
+    <text x="720" y="406" font-size="11">T(t)</text>
+    <!-- screener → gate -->
+    <path d="M710,255 C740,255 770,295 875,330" marker-end="url(#arrow)"/>
+    <text x="800" y="285" font-size="11">shortlist a_1..a_{Ms}</text>
+    <!-- twin → screener -->
+    <path d="M360,360 C380,340 390,310 480,310" marker-end="url(#arrow)"/>
+    <!-- gate → physical (action) -->
+    <path d="M905,500 L905,540" marker-end="url(#arrow)"/>
+    <text x="920" y="524" font-size="11">a*(t)</text>
+    <!-- utility feedback -->
+    <path d="M905,310 L905,330" marker-end="url(#arrow)"/>
+    <text x="920" y="325" font-size="11">U(t)</text>
+  </g>
+
+  <!-- Legend panel -->
+  <g transform="translate(60,80)">
+    <rect width="1000" height="100" rx="12" fill="#f9fafb" stroke="#d1d5db"/>
+    <text x="16" y="24" font-size="13" font-weight="700" fill="#111827">Module colour key</text>
+    <g font-size="12" fill="#111827">
+      <circle cx="22" cy="50" r="7" fill="url(#gPhy)" stroke="#1f4e79"/><text x="38" y="54">Physical layer (channel, precoder, mobility, sensing)</text>
+      <circle cx="22" cy="76" r="7" fill="url(#gTwin)" stroke="#c0392b"/><text x="38" y="80">Digital twin &amp; anomaly source (trust-relevant state)</text>
+      <circle cx="380" cy="50" r="7" fill="url(#gTrust)" stroke="#27ae60"/><text x="396" y="54">Trust process — Bayesian-EWMA with hard safety floor</text>
+      <circle cx="380" cy="76" r="7" fill="#f7fbff" stroke="#1f4e79"/><text x="396" y="80">Quantum-assisted screener — VQC surrogate</text>
+      <circle cx="700" cy="50" r="7" fill="url(#gCtrl)" stroke="#8e44ad"/><text x="716" y="54">Trust-aware gate &amp; near-RT controller</text>
+      <circle cx="700" cy="76" r="7" fill="#fffbea" stroke="#c78a04"/><text x="716" y="80">Utility feedback — rate · detection · security · energy</text>
+    </g>
+  </g>
+</svg>

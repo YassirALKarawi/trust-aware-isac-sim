@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560" font-family="'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif" role="img" aria-label="Trust-Aware Gate Mechanism">
+  <defs>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2937"/>
+    </marker>
+    <linearGradient id="trustGrad" x1="0" x2="1">
+      <stop offset="0" stop-color="#fca5a5"/>
+      <stop offset="0.3" stop-color="#fde68a"/>
+      <stop offset="0.7" stop-color="#bbf7d0"/>
+      <stop offset="1" stop-color="#86efac"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+
+  <text x="480" y="40" text-anchor="middle" font-size="22" font-weight="800" fill="#111827">
+    Trust-Aware Gate  —  convex blend with hard safety floor
+  </text>
+  <text x="480" y="62" text-anchor="middle" font-size="13" fill="#4b5563">
+    a*(t) = T(t)·a_optimal + (1−T(t))·a_safe ;   if T(t) &lt; T_safe → a*(t) = a_safe
+  </text>
+
+  <!-- Trust axis -->
+  <g transform="translate(80,130)">
+    <rect width="800" height="34" rx="12" fill="url(#trustGrad)" stroke="#111827"/>
+    <!-- floor marker at 0.30 -->
+    <line x1="240" y1="-14" x2="240" y2="48" stroke="#7f1d1d" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="240" y="-20" text-anchor="middle" font-size="12" font-weight="700" fill="#7f1d1d">T_safe = 0.30</text>
+    <!-- labels -->
+    <text x="0" y="58" font-size="12">0.0</text>
+    <text x="400" y="58" text-anchor="middle" font-size="12">0.5</text>
+    <text x="800" y="58" text-anchor="end" font-size="12">1.0</text>
+    <text x="400" y="22" text-anchor="middle" font-weight="700" fill="#111827">Trust  T(t)</text>
+  </g>
+
+  <!-- Three regimes -->
+  <g transform="translate(80,220)">
+    <!-- Fallback regime -->
+    <g>
+      <rect x="0" y="0" width="220" height="230" rx="14" fill="#fef2f2" stroke="#c0392b"/>
+      <text x="110" y="26" text-anchor="middle" font-size="15" font-weight="700" fill="#c0392b">① Unsafe regime</text>
+      <text x="110" y="46" text-anchor="middle" font-size="12" fill="#7f1d1d">T(t) &lt; 0.30</text>
+      <text x="16" y="82" font-size="12" fill="#111827">a*(t) = a_safe</text>
+      <text x="16" y="104" font-size="12" fill="#111827">ρ_sense = 0.30</text>
+      <text x="16" y="122" font-size="12" fill="#111827">P_frac     = 1.00</text>
+      <text x="16" y="140" font-size="12" fill="#111827">BW_frac  = 1.00</text>
+      <text x="16" y="172" font-size="11" fill="#6b7280">Guarantees ≥ Static ISAC</text>
+      <text x="16" y="188" font-size="11" fill="#6b7280">under full trust collapse</text>
+      <rect x="10" y="200" width="200" height="20" rx="4" fill="#c0392b" opacity="0.15"/>
+      <text x="110" y="214" text-anchor="middle" font-size="11" fill="#7f1d1d" font-weight="700">hard fallback</text>
+    </g>
+    <!-- Adaptive regime -->
+    <g transform="translate(260,0)">
+      <rect x="0" y="0" width="280" height="230" rx="14" fill="#fefce8" stroke="#a16207"/>
+      <text x="140" y="26" text-anchor="middle" font-size="15" font-weight="700" fill="#a16207">② Adaptive blend</text>
+      <text x="140" y="46" text-anchor="middle" font-size="12" fill="#713f12">0.30 ≤ T(t) &lt; 1.0</text>
+      <text x="16" y="82" font-size="12" fill="#111827">a*(t) = T·a_opt + (1−T)·a_safe</text>
+      <text x="16" y="108" font-size="11" fill="#6b7280">smoothly interpolates towards</text>
+      <text x="16" y="124" font-size="11" fill="#6b7280">the optimiser output as evidence</text>
+      <text x="16" y="140" font-size="11" fill="#6b7280">accumulates</text>
+      <text x="16" y="172" font-size="11" fill="#111827">· preserves latency gain of QA</text>
+      <text x="16" y="188" font-size="11" fill="#111827">· throttles aggressive reconfigs</text>
+      <rect x="10" y="200" width="260" height="20" rx="4" fill="#a16207" opacity="0.12"/>
+      <text x="140" y="214" text-anchor="middle" font-size="11" fill="#713f12" font-weight="700">risk-aware mixing</text>
+    </g>
+    <!-- Trusted regime -->
+    <g transform="translate(580,0)">
+      <rect x="0" y="0" width="220" height="230" rx="14" fill="#f0fdf4" stroke="#15803d"/>
+      <text x="110" y="26" text-anchor="middle" font-size="15" font-weight="700" fill="#15803d">③ Trusted regime</text>
+      <text x="110" y="46" text-anchor="middle" font-size="12" fill="#14532d">T(t) → 1.0</text>
+      <text x="16" y="82" font-size="12" fill="#111827">a*(t) = a_optimal</text>
+      <text x="16" y="108" font-size="11" fill="#6b7280">QA-shortlisted candidate</text>
+      <text x="16" y="124" font-size="11" fill="#6b7280">evaluated on twin</text>
+      <text x="16" y="154" font-size="11" fill="#111827">· max utility regime</text>
+      <text x="16" y="172" font-size="11" fill="#111827">· full exploitation of DT</text>
+      <rect x="10" y="200" width="200" height="20" rx="4" fill="#15803d" opacity="0.15"/>
+      <text x="110" y="214" text-anchor="middle" font-size="11" fill="#14532d" font-weight="700">optimistic exploitation</text>
+    </g>
+  </g>
+
+  <!-- Flow at bottom -->
+  <g transform="translate(80,470)" font-size="12">
+    <rect x="0" y="0" width="800" height="72" rx="12" fill="#f9fafb" stroke="#d1d5db"/>
+    <text x="16" y="24" font-weight="700" fill="#111827">Signal flow</text>
+    <g>
+      <rect x="14" y="34" width="140" height="28" rx="6" fill="#ffffff" stroke="#1f4e79"/>
+      <text x="84" y="52" text-anchor="middle">evidence ℓ(t)</text>
+      <line x1="156" y1="48" x2="198" y2="48" stroke="#1f2937" stroke-width="1.5" marker-end="url(#arrG)"/>
+      <rect x="200" y="34" width="140" height="28" rx="6" fill="#ffffff" stroke="#15803d"/>
+      <text x="270" y="52" text-anchor="middle">trust update T(t)</text>
+      <line x1="342" y1="48" x2="384" y2="48" stroke="#1f2937" stroke-width="1.5" marker-end="url(#arrG)"/>
+      <rect x="386" y="34" width="200" height="28" rx="6" fill="#ffffff" stroke="#8e44ad"/>
+      <text x="486" y="52" text-anchor="middle">gate · blend / fallback</text>
+      <line x1="588" y1="48" x2="630" y2="48" stroke="#1f2937" stroke-width="1.5" marker-end="url(#arrG)"/>
+      <rect x="632" y="34" width="160" height="28" rx="6" fill="#ffffff" stroke="#c0392b"/>
+      <text x="712" y="52" text-anchor="middle">action a*(t) → BSs</text>
+    </g>
+  </g>
+</svg>
