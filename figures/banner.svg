@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a192f"/>
+      <stop offset="50%" stop-color="#112240"/>
+      <stop offset="100%" stop-color="#1a365d"/>
+    </linearGradient>
+    <linearGradient id="ac" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <linearGradient id="gd" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#bg)"/>
+  <g opacity="0.04" stroke="white" stroke-width="0.8">
+    <line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="120" y1="0" x2="120" y2="300"/><line x1="240" y1="0" x2="240" y2="300"/>
+    <line x1="360" y1="0" x2="360" y2="300"/><line x1="480" y1="0" x2="480" y2="300"/>
+    <line x1="600" y1="0" x2="600" y2="300"/><line x1="720" y1="0" x2="720" y2="300"/>
+    <line x1="840" y1="0" x2="840" y2="300"/><line x1="960" y1="0" x2="960" y2="300"/>
+    <line x1="1080" y1="0" x2="1080" y2="300"/>
+  </g>
+  <g opacity="0.06">
+    <circle cx="90" cy="70" r="35" fill="none" stroke="#38bdf8" stroke-width="1.2"/>
+    <circle cx="170" cy="210" r="22" fill="none" stroke="#818cf8" stroke-width="1"/>
+    <circle cx="1060" cy="90" r="30" fill="none" stroke="#38bdf8" stroke-width="1"/>
+    <circle cx="1120" cy="230" r="18" fill="none" stroke="#34d399" stroke-width="1"/>
+    <circle cx="970" cy="250" r="25" fill="none" stroke="#818cf8" stroke-width="1"/>
+    <line x1="90" y1="70" x2="170" y2="210" stroke="#38bdf8" stroke-width="0.8"/>
+    <line x1="1060" y1="90" x2="1120" y2="230" stroke="#38bdf8" stroke-width="0.8"/>
+    <line x1="1060" y1="90" x2="970" y2="250" stroke="#818cf8" stroke-width="0.8"/>
+  </g>
+  <rect x="0" y="294" width="1200" height="6" fill="url(#gd)"/>
+  <!-- Shield icon -->
+  <g transform="translate(95, 95)">
+    <path d="M0,-35 L30,-20 L30,10 Q30,35 0,42 Q-30,35 -30,10 L-30,-20 Z" fill="none" stroke="url(#ac)" stroke-width="2.5" opacity="0.6"/>
+    <path d="M-12,-8 L-4,4 L14,-14" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+  </g>
+  <text x="195" y="105" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="44" font-weight="800" fill="white" letter-spacing="1">Trust-Aware ISAC</text>
+  <text x="195" y="140" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" fill="#94a3b8" letter-spacing="1.5">QUANTUM-ASSISTED DIGITAL TWIN CONTROL</text>
+  <text x="195" y="170" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#64748b">Secure and Adaptive ISAC in 6G Open RAN · IEEE JSAC 2026</text>
+  <g transform="translate(195, 195)" font-family="monospace">
+    <rect x="0" y="0" width="55" height="22" rx="4" fill="#38bdf8" opacity="0.15"/>
+    <text x="27" y="15" text-anchor="middle" font-size="10" fill="#38bdf8">6G</text>
+    <rect x="65" y="0" width="55" height="22" rx="4" fill="#38bdf8" opacity="0.15"/>
+    <text x="92" y="15" text-anchor="middle" font-size="10" fill="#38bdf8">ISAC</text>
+    <rect x="130" y="0" width="60" height="22" rx="4" fill="#34d399" opacity="0.15"/>
+    <text x="160" y="15" text-anchor="middle" font-size="10" fill="#34d399">Trust</text>
+    <rect x="200" y="0" width="90" height="22" rx="4" fill="#38bdf8" opacity="0.15"/>
+    <text x="245" y="15" text-anchor="middle" font-size="10" fill="#38bdf8">Digital Twin</text>
+    <rect x="300" y="0" width="72" height="22" rx="4" fill="#c084fc" opacity="0.15"/>
+    <text x="336" y="15" text-anchor="middle" font-size="10" fill="#c084fc">Quantum</text>
+    <rect x="382" y="0" width="72" height="22" rx="4" fill="#34d399" opacity="0.15"/>
+    <text x="418" y="15" text-anchor="middle" font-size="10" fill="#34d399">Security</text>
+    <rect x="464" y="0" width="80" height="22" rx="4" fill="#38bdf8" opacity="0.15"/>
+    <text x="504" y="15" text-anchor="middle" font-size="10" fill="#38bdf8">Open RAN</text>
+  </g>
+  <g transform="translate(850, 80)" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="0" y="0" font-size="10" fill="#64748b" letter-spacing="1.5">SIMULATOR</text>
+    <line x1="0" y1="8" x2="210" y2="8" stroke="#1e3a5f" stroke-width="1"/>
+    <text x="0" y="35" font-size="26" font-weight="700" fill="white">6</text>
+    <text x="28" y="35" font-size="11" fill="#94a3b8">baseline methods</text>
+    <text x="0" y="65" font-size="26" font-weight="700" fill="white">0.622</text>
+    <text x="68" y="65" font-size="11" fill="#94a3b8">peak utility</text>
+    <text x="0" y="95" font-size="26" font-weight="700" fill="white">21</text>
+    <text x="36" y="95" font-size="11" fill="#94a3b8">slot trust recovery</text>
+    <text x="0" y="125" font-size="26" font-weight="700" fill="white">76%</text>
+    <text x="52" y="125" font-size="11" fill="#94a3b8">screening reduction</text>
+    <text x="0" y="155" font-size="26" font-weight="700" fill="white">10 ms</text>
+    <text x="72" y="155" font-size="11" fill="#94a3b8">near-RT control loop</text>
+  </g>
+</svg>

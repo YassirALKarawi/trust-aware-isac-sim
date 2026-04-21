@@ -1,6 +1,8 @@
-<div align="center">
+<p align="center">
+  <img src="figures/banner.png" width="100%"/>
+</p>
 
-# Trust-Aware Quantum-Assisted Digital-Twin Control<br/>for Secure ISAC in 6G Open-RAN
+<div align="center">
 
 **Reference simulator and experiment artefacts**
 
@@ -74,7 +76,7 @@ and [`results/anomaly_sweep_v2.json`](results/anomaly_sweep_v2.json)):**
 ## System architecture
 
 <p align="center">
-  <img src="figures/fig_architecture.svg" alt="System architecture" width="100%"/>
+  <img src="figures/fig_architecture.png" alt="System architecture" width="100%"/>
 </p>
 
 The closed-loop control stack runs once per 10 ms slot. Physical measurements
@@ -85,7 +87,7 @@ injector**; a **trust process** accumulates Bayesian evidence; a
 deploying it to the base stations.
 
 <p align="center">
-  <img src="figures/fig_timing.svg" alt="Per-slot timing" width="100%"/>
+  <img src="figures/fig_timing.png" alt="Per-slot timing" width="100%"/>
 </p>
 
 > **Note on the timing figure.** The 31 ms and 1.8 ms numbers in the
@@ -94,7 +96,7 @@ deploying it to the base stations.
 > `results/baseline.json` under `simulator_wall_clock_ms_mean`.
 
 <p align="center">
-  <img src="figures/fig_trust_gate.svg" alt="Trust gate mechanism" width="100%"/>
+  <img src="figures/fig_trust_gate.png" alt="Trust gate mechanism" width="100%"/>
 </p>
 
 The gate guarantees monotone safety:
@@ -104,7 +106,7 @@ T(t) <  T_safe  →  a*(t) = a_safe   (hard fallback ≡ Static ISAC)
 ```
 
 <p align="center">
-  <img src="figures/fig_deployment.svg" alt="Cell-free deployment" width="92%"/>
+  <img src="figures/fig_deployment.png" alt="Cell-free deployment" width="92%"/>
 </p>
 
 ---
@@ -162,11 +164,11 @@ methods do not run the Bayesian-EWMA `TrustProcess`. See
 `*` trust value is a nominal default (no active trust engine in that method), not a measured posterior.
 
 <p align="center">
-  <img src="figures/fig_baseline_bars.svg" alt="Baseline bar chart — utility with error bars" width="100%"/>
+  <img src="figures/fig_baseline_bars.png" alt="Baseline bar chart — utility with error bars" width="100%"/>
 </p>
 
 <p align="center">
-  <img src="figures/fig_baseline_dashboard.svg" alt="Baseline dashboard — multi-metric" width="100%"/>
+  <img src="figures/fig_baseline_dashboard.png" alt="Baseline dashboard — multi-metric" width="100%"/>
 </p>
 
 ### 2 · Anomaly-rate sweep *(Fig. 6)*
@@ -178,7 +180,7 @@ are reported side-by-side so a reader cannot mistake one for the other:
 - Peak gap **vs. strongest baseline** (DT + QA): **+0.021** utility at `p = 0.08`.
 
 <p align="center">
-  <img src="figures/fig_anomaly_sweep.svg" alt="Anomaly sweep" width="100%"/>
+  <img src="figures/fig_anomaly_sweep.png" alt="Anomaly sweep" width="100%"/>
 </p>
 
 ### 3 · Twin-delay robustness *(Fig. 7)*
@@ -188,7 +190,7 @@ From [`results/twin_delay.json`](results/twin_delay.json). Across
 ≈ 1 %.
 
 <p align="center">
-  <img src="figures/fig_twin_delay.svg" alt="Twin delay" width="100%"/>
+  <img src="figures/fig_twin_delay.png" alt="Twin delay" width="100%"/>
 </p>
 
 ### 4 · Quantum-assisted shortlist size *(Fig. 11)*
@@ -201,7 +203,7 @@ M_s = 12` delivers a **structural 76 %** reduction in full-utility
 evaluations per slot (`1 − M_s / M`) independent of simulator noise.
 
 <p align="center">
-  <img src="figures/fig_shortlist_size.svg" alt="Shortlist sensitivity" width="100%"/>
+  <img src="figures/fig_shortlist_size.png" alt="Shortlist sensitivity" width="100%"/>
 </p>
 
 ### 5 · Trust recovery transient *(Fig. 12)*
@@ -213,7 +215,7 @@ not prevent `T(t)` from falling below it), and the 10–90 % recovery completes
 in **21 slots** once the attack ends.
 
 <p align="center">
-  <img src="figures/fig_trust_transient.svg" alt="Trust transient" width="100%"/>
+  <img src="figures/fig_trust_transient.png" alt="Trust transient" width="100%"/>
 </p>
 
 ### 6 · Energy–utility Pareto view *(Fig. 13)*
@@ -221,7 +223,7 @@ in **21 slots** once the attack ends.
 From [`results/baseline_v2.json`](results/baseline_v2.json).
 
 <p align="center">
-  <img src="figures/fig_pareto.svg" alt="Energy-utility Pareto" width="100%"/>
+  <img src="figures/fig_pareto.png" alt="Energy-utility Pareto" width="100%"/>
 </p>
 
 ### 7 · Scalability
@@ -231,7 +233,7 @@ From [`results/scalability_users.json`](results/scalability_users.json) and
 
 | | |
 |:-:|:-:|
-| <img src="figures/fig_scalability_users.svg" alt="Users scalability" width="440"/> | <img src="figures/fig_scalability_targets.svg" alt="Targets scalability" width="440"/> |
+| <img src="figures/fig_scalability_users.png" alt="Users scalability" width="440"/> | <img src="figures/fig_scalability_targets.png" alt="Targets scalability" width="440"/> |
 
 ---
 
@@ -264,7 +266,7 @@ Three distinct notions live in the repo, and each has a dedicated name:
 | Concept | Field / source | What it is |
 |---|---|---|
 | **Simulator wall-clock** | `simulator_wall_clock_ms_mean` in every JSON leaf; legacy alias `latency_ms_mean` preserved | `time.perf_counter()` elapsed over one call to `ISACController.run_slot()` on the machine that produced the JSON. CPython / NumPy, single core. Not bit-identical across machines. |
-| **Stage budget** | `figures/fig_timing.svg` block sequence | Illustrative per-stage layout of the 10 ms near-RT slot. No numerical data. |
+| **Stage budget** | `figures/fig_timing.png` block sequence | Illustrative per-stage layout of the 10 ms near-RT slot. No numerical data. |
 | **Projected native deployed** | Annotation on `fig_timing.svg` | Engineering projection of what a vectorised / native reimplementation could achieve. **Not** produced by any code in this repo. |
 
 The `fig_timing.svg` file is explicitly labelled "illustrative projection
@@ -329,7 +331,7 @@ Each numerical claim above traces to a specific JSON file:
 | Fig. 11 (Shortlist size) | `results/shortlist_size.json` | Plateau near M_s ≈ 10–20; structural 76 % reduction at M=50, M_s=12 |
 | Fig. 12 (Trust transient) | `results/trust_transient.json` | Floor T ≈ 0.06; 10–90 % recovery in 21 slots |
 | Fig. 13 (Pareto frontier) | `results/baseline_v2.json` | Dominance on the energy–utility frontier |
-| Table 9 (Complexity / Timing) | `results/baseline.json` `simulator_wall_clock_ms_*` + `figures/fig_timing.svg` | Simulator wall-clock measured per method; 31 ms / 1.8 ms marked as projections |
+| Table 9 (Complexity / Timing) | `results/baseline.json` `simulator_wall_clock_ms_*` + `figures/fig_timing.png` | Simulator wall-clock measured per method; 31 ms / 1.8 ms marked as projections |
 
 Run `python src/synthesize.py` to print a consolidated summary reading every
 JSON under `results/`.
