@@ -42,6 +42,19 @@ METHOD_LABEL = {
     "dt_trust": "DT + Trust",
     "full": "Full (Proposed)",
 }
+
+# Trust-semantics marker used in figure subtitles / bar tags. Methods whose
+# `trust_semantics` in the JSON is `nominal_default` get an asterisk so a
+# reader cannot confuse them with an active Bayesian-EWMA posterior.
+# See docs/PAPER_CODE_ALIGNMENT_AUDIT.md §2.
+def _trust_marker(entry: dict) -> str:
+    sem = entry.get("trust_semantics", "unknown")
+    return "*" if sem == "nominal_default" else ""
+
+
+def _wall_clock_ms(entry: dict) -> float:
+    return entry.get("simulator_wall_clock_ms_mean",
+                     entry.get("latency_ms_mean", 0.0))
 METHOD_COLOR = {
     "static":   "#64748b",
     "reactive": "#94a3b8",
@@ -70,7 +83,8 @@ def fig_baseline_bars():
         errors=stds,
         colors=colors,
         title="Baseline Comparison — Mean Utility (± std)",
-        subtitle="200 slots × 3 Monte-Carlo realisations  ·  p_anom = 0.04",
+        subtitle=("200 slots × 3 Monte-Carlo realisations  ·  p_anom = 0.04  ·  "
+                  "methods with active Bayesian-EWMA trust: DT only, DT + Trust, Full"),
         y_title="Mean utility  (0 – 1)",
         highlight_index=best_idx,
         highlight_label="Proposed (best)",
@@ -132,19 +146,31 @@ def fig_anomaly_sweep():
     # winner annotation: biggest full-vs-static gap
     full_ys = series[-1]["y"]
     static_ys = series[0]["y"]
-    gaps = [f - s for f, s in zip(full_ys, static_ys)]
-    i_max = gaps.index(max(gaps))
+    gaps_vs_static = [f - s for f, s in zip(full_ys, static_ys)]
+    # Also compute the gap vs the strongest non-Full baseline at each point
+    # so the annotation names its reference explicitly. See audit §5.
+    non_full = [m for m in cols if m != "full"]
+    gaps_vs_best = []
+    for i, _ in enumerate(rates):
+        best_other = max(a[m][str(rates[i])]["utility_mean"] for m in non_full)
+        gaps_vs_best.append(full_ys[i] - best_other)
+    i_max_static = gaps_vs_static.index(max(gaps_vs_static))
+    i_max_best   = gaps_vs_best.index(max(gaps_vs_best))
     svg = line_plot(
         series,
         title="Utility vs. Anomaly-Injection Rate",
-        subtitle="Shaded bands: ± 1 std over Monte-Carlo seeds",
+        subtitle=(f"Peak gap vs Static: +{gaps_vs_static[i_max_static]:.3f} "
+                  f"at p={rates[i_max_static]:.3f}  ·  "
+                  f"peak gap vs strongest baseline: "
+                  f"+{gaps_vs_best[i_max_best]:.3f} at p={rates[i_max_best]:.3f}"),
         x_title="Per-slot anomaly probability  p",
         y_title="Mean utility",
         highlight_series=METHOD_LABEL["full"],
         annotations=[{
-            "x": rates[i_max], "y": full_ys[i_max],
+            "x": rates[i_max_static], "y": full_ys[i_max_static],
             "dx": 18, "dy": -26,
-            "text": f"Δ = +{gaps[i_max]:.3f}  at  p={rates[i_max]:.2f}",
+            "text": (f"Δ vs Static = +{gaps_vs_static[i_max_static]:.3f}  "
+                     f"at p={rates[i_max_static]:.2f}"),
         }],
     )
     (FIGS / "fig_anomaly_sweep.svg").write_text(svg)
@@ -186,31 +212,37 @@ def fig_shortlist_size():
         return
     sizes = sorted(int(k) for k in ss.keys())
     utility = [ss[str(s)]["utility_mean"] for s in sizes]
-    latency = [ss[str(s)]["latency_ms_mean"] for s in sizes]
+    latency = [_wall_clock_ms(ss[str(s)]) for s in sizes]
     stds = [ss[str(s)]["utility_std"] for s in sizes]
-    # normalise latency onto utility axis for co-plotting
     u_max = max(utility)
     lat_max = max(latency)
     latency_scaled = [l / lat_max * u_max for l in latency]
 
     best = utility.index(max(utility))
+    # Structural reduction at the paper's nominal operating point M=50, M_s=12.
+    # This is independent of any measured metric — see audit §4.2.
+    M, M_s_nom = 50, 12
+    structural_reduction = 1.0 - M_s_nom / M
     svg = line_plot(
         [
             {"name": "Utility",
              "x": sizes, "y": utility, "band": stds,
              "color": "#1f4e79"},
-            {"name": "Latency  (rescaled)",
+            {"name": "Simulator wall-clock  (rescaled)",
              "x": sizes, "y": latency_scaled,
              "color": "#c0392b", "dashed": True},
         ],
-        title="Quantum-Assisted Shortlist Size  —  Utility vs. Latency",
-        subtitle=f"Utility saturates near M_s = {sizes[best]};  latency grows ~linearly",
+        title="Quantum-Assisted Shortlist Size  —  Utility vs. Wall-Clock",
+        subtitle=(f"Utility plateaus near M_s ≈ 10–20 (noise-dominated); "
+                  f"wall-clock grows ~linearly.  "
+                  f"Structural reduction at M={M}, M_s={M_s_nom}: "
+                  f"{structural_reduction*100:.0f}%"),
         x_title="Shortlist size  M_s",
-        y_title="Utility  (latency shown rescaled to utility axis)",
+        y_title="Utility  (wall-clock shown rescaled to utility axis)",
         annotations=[{
             "x": sizes[best], "y": utility[best],
             "dx": 22, "dy": -28,
-            "text": f"peak  U = {utility[best]:.3f}  @ M_s = {sizes[best]}",
+            "text": f"argmax  U = {utility[best]:.3f}  @ M_s = {sizes[best]}",
         }],
         legend_title="Curve",
     )
@@ -241,8 +273,10 @@ def fig_trust_transient():
     svg = time_series(
         traces,
         title="Trust Recovery Transient",
-        subtitle=f"500 slots  ·  attack burst slots 200–300  ·  10–90% recovery "
-                 f"in {recovery_slots} slots",
+        subtitle=(f"500 slots  ·  attack burst slots 200–300  ·  "
+                  f"floor min T ≈ {floor:.2f}  ·  "
+                  f"10–90% recovery in {recovery_slots} slots  ·  "
+                  f"T_safe is a gate threshold, not a cap on T(t)"),
         x_title="Slot index  t",
         y_title="Trust  T(t)",
         shaded_regions=[{"x0": 200, "x1": 300,

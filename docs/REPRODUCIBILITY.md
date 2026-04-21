@@ -1,8 +1,33 @@
 # Reproducibility Guide
 
-This document explains how to regenerate every numerical result reported in the
-paper from the simulator. Each experiment is seeded deterministically from the
-`master_seed` parameter in `src/config.py`.
+This document explains how to regenerate the committed JSON artefacts under
+[`results/`](../results) and the data-driven figures under
+[`figures/`](../figures). Every experiment is seeded deterministically from
+the `master_seed` parameter in `src/config.py`.
+
+See also:
+- [`PAPER_CODE_ALIGNMENT_AUDIT.md`](PAPER_CODE_ALIGNMENT_AUDIT.md) for the
+  full paper ↔ code consistency audit.
+- [`FIGURE_PROVENANCE.md`](FIGURE_PROVENANCE.md) for the per-figure manifest.
+- [`FINAL_ALIGNMENT_STATUS.md`](FINAL_ALIGNMENT_STATUS.md) for the canonical
+  snapshot summary.
+
+---
+
+## What is and is not bit-identical
+
+**Bit-identical on reruns with the same NumPy version** — every seeded
+scientific metric: utility, rate, P_d, trust, ε_DT, accuracy, energy.
+
+**Not bit-identical** — the `simulator_wall_clock_ms_*` fields (and the
+legacy `latency_ms_*` alias). These are `time.perf_counter()` measurements
+of per-slot controller wall-clock on the machine that produced them and
+will vary run-to-run, machine-to-machine, and Python-version-to-Python
+version.
+
+The 31 ms "simulator" and 1.8 ms "deployed" numbers that appear in
+`figures/fig_timing.svg` are **engineering projections**, not simulator
+outputs. They are clearly labelled as such in the figure.
 
 ---
 
@@ -10,26 +35,24 @@ paper from the simulator. Each experiment is seeded deterministically from the
 
 | Component | Minimum version | Notes |
 |---|---|---|
-| Python | 3.10 | `|` union types, `match` statements used in the codebase |
-| NumPy | 1.24 | Default RNG (`Generator`) is used throughout |
-| SciPy | 1.10 | Optional; used only for a handful of statistical helpers |
-| Matplotlib | 3.7 | Optional; required only for `tools/make_figures.py` |
+| Python | 3.10 | `|` union types used in the codebase |
+| NumPy | 1.24 | `numpy.random.Generator` is used throughout |
+| SciPy | 1.10 | Optional |
+| Matplotlib | 3.7 | Optional; required only for `tools/make_figures.py`. `tools/build_figures.py` has no non-stdlib dependencies. |
 | RAM | ~500 MB | Peak at `n_users = 100, n_slots = 500` |
-| GPU / quantum HW | — | None required. The VQC scorer is a classical surrogate. |
+| GPU / quantum HW | — | None required. The VQC-style scorer is a classical deterministic surrogate. |
 
 ---
 
 ## Deterministic seeding
 
-Every random draw in the simulator traces to the `master_seed` parameter.
 Monte-Carlo realisation `k` uses seed `master_seed + 1000·k`. Within one
 realisation, the channel bank, mobility, clutter, anomaly injector, digital
 twin, trust process, and screener all share the same NumPy `Generator`
-instance, so results are **bit-identical** on reruns with the same NumPy
-version.
+instance.
 
-To reproduce the paper's exact numbers, keep `master_seed = 20260417` and use
-NumPy 2.x.
+To reproduce the committed JSON numbers, keep `master_seed = 20260417` and
+use NumPy 2.x.
 
 ---
 
@@ -40,8 +63,7 @@ python src/controller.py
 ```
 
 Runs the full framework for 20 slots and prints the final utility. Expected
-output: utility in the 0.50–0.65 range depending on the random draw from the
-seeded anomaly process. Runtime ≈ 30 s.
+runtime ≈ 30 s.
 
 ---
 
@@ -53,70 +75,12 @@ seeded anomaly process. Runtime ≈ 30 s.
 python src/run_baseline.py
 ```
 
-Runs all six baselines (Static ISAC, Reactive, DT only, DT+QA, DT+Trust,
-Full Proposed) over 3 Monte-Carlo realisations of 200 slots each. Writes
+Runs all six canonical baselines (Static ISAC, Reactive, DT only, DT + QA,
+DT + Trust, Full Proposed) over 3 Monte-Carlo realisations of 300 slots
+each. The output JSON carries the new schema fields:
+`trust_semantics ∈ {"active", "nominal_default"}` and
+`simulator_wall_clock_ms_*` aliased to the legacy `latency_ms_*`. Writes
 `results/baseline.json`. Runtime ≈ 3 min.
-
-### Anomaly-rate sweep (Fig. 6)
-
-```bash
-python -c "
-from src.run_all import exp_anomaly_sweep
-from src.config import SimConfig
-import json
-cfg = SimConfig(n_slots=120)
-r = exp_anomaly_sweep(cfg, n_mc=2)
-json.dump(r, open('results/anomaly_sweep.json', 'w'), indent=2)
-"
-```
-
-Sweeps attack rate p ∈ {0, 0.005, 0.01, 0.02, 0.04, 0.06, 0.08, 0.10}.
-Runtime ≈ 8 min.
-
-### Twin-delay sweep (Fig. 7)
-
-```bash
-python -c "
-from src.run_all import exp_twin_delay
-from src.config import SimConfig
-import json
-cfg = SimConfig(n_slots=150)
-r = exp_twin_delay(cfg, n_mc=2)
-json.dump(r, open('results/twin_delay.json', 'w'), indent=2)
-"
-```
-
-Sweeps τ_sync ∈ {1, 2, 4, 6, 8, 10} slots. Runtime ≈ 6 min.
-
-### Shortlist-size sensitivity (Fig. 11)
-
-```bash
-python -c "
-from src.run_all import exp_shortlist_size
-from src.config import SimConfig
-import json
-cfg = SimConfig(n_slots=150)
-r = exp_shortlist_size(cfg, n_mc=2)
-json.dump(r, open('results/shortlist_size.json', 'w'), indent=2)
-"
-```
-
-Sweeps M_s ∈ {1, 2, 4, 6, 8, 10, 12, 15, 20, 30}. Runtime ≈ 4 min.
-
-### Trust transient (Fig. 12)
-
-```bash
-python -c "
-from src.run_all import exp_trust_transient
-from src.config import SimConfig
-import json
-cfg = SimConfig(n_slots=500)
-r = exp_trust_transient(cfg)
-json.dump(r, open('results/trust_transient.json', 'w'), indent=2)
-"
-```
-
-Runs 500 slots with an attack burst from slot 200 to slot 300. Runtime ≈ 1 min.
 
 ### Full experiment suite
 
@@ -124,40 +88,88 @@ Runs 500 slots with an attack burst from slot 200 to slot 300. Runtime ≈ 1 min
 python src/run_all.py
 ```
 
-Runs every experiment above plus the scalability sweeps. Runtime ≈ 30 min.
+Runs every paper experiment and writes all seven per-experiment JSON files
+plus the monolithic `all_results.json`:
+
+- `results/baseline.json`
+- `results/anomaly_sweep.json`
+- `results/twin_delay.json`
+- `results/shortlist_size.json`
+- `results/trust_transient.json`
+- `results/scalability_users.json`
+- `results/scalability_targets.json`
+
+Runtime ≈ 30 min.
+
+### Individual experiment snippets
+
+Each experiment function in `src/run_all.py` can also be invoked
+individually from a REPL:
+
+```python
+from src.config import SimConfig
+from src.run_all import (exp_baseline, exp_anomaly_sweep, exp_twin_delay,
+                          exp_shortlist_size, exp_trust_transient,
+                          exp_scalability_users, exp_scalability_targets)
+from dataclasses import replace
+import json, pathlib
+
+cfg = SimConfig(n_slots=250)
+pathlib.Path("results").mkdir(exist_ok=True)
+
+json.dump(exp_anomaly_sweep(cfg, n_mc=2),
+          open("results/anomaly_sweep.json", "w"), indent=2)
+json.dump(exp_twin_delay(cfg, n_mc=2),
+          open("results/twin_delay.json", "w"), indent=2)
+json.dump(exp_shortlist_size(cfg, n_mc=2),
+          open("results/shortlist_size.json", "w"), indent=2)
+json.dump(exp_trust_transient(replace(cfg, n_slots=500)),
+          open("results/trust_transient.json", "w"), indent=2)
+```
 
 ---
 
-## Regenerating the aggregated summary
-
-After any subset of experiments has been run, the consolidated summary can be
-regenerated with:
+## Consolidated summary
 
 ```bash
 python src/synthesize.py
 ```
 
-This reads every JSON under `results/` and prints a compact summary of the
-numbers that appear in the paper.
+Reads every JSON under `results/` and prints a compact summary, with the
+trust-semantics marker on methods whose trust value is a nominal default.
 
 ---
 
 ## Regenerating the figures
 
-Two equivalent paths are provided:
-
 ```bash
 # A — publication-grade (requires matplotlib)
 python tools/make_figures.py
-#   → writes PNG + PDF for every figure into figures/
+#   → writes PNG + PDF for every data-driven figure into figures/
 
 # B — zero external dependencies (stdlib only)
 python tools/build_figures.py
-#   → writes SVG for every figure into figures/
+#   → writes SVG for every data-driven figure into figures/
 ```
 
-Both paths consume the same JSON under `results/` and produce a visually
-equivalent figure set.
+The four illustrative diagrams (architecture / deployment / timing / trust
+gate) are checked in as authored SVG and are not regenerated by the tool
+scripts. See [`FIGURE_PROVENANCE.md`](FIGURE_PROVENANCE.md).
+
+---
+
+## JSON schema migration
+
+If you have older JSON artefacts that lack the `trust_semantics` and
+`simulator_wall_clock_ms_*` fields, the stdlib-only migration helper
+stamps them in place:
+
+```bash
+python tools/_stamp_semantics.py
+```
+
+The script is idempotent — re-running it has no effect once the schema is
+up to date.
 
 ---
 
@@ -174,5 +186,4 @@ results["anomaly_sweep"] = exp_anomaly_sweep(cfg_main, n_mc=10)
 # ...
 ```
 
-Total runtime scales approximately linearly: 10× MC × 10× slots ≈ 50 h on a
-single CPU core.
+Total runtime scales approximately linearly.

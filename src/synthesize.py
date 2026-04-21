@@ -31,14 +31,29 @@ print("  SIMULATION SYNTHESIS — all experiments")
 print("=" * 78)
 
 # ---------- Baseline ----------
-b = load("baseline")
+def _wall_clock_ms(entry: dict) -> float:
+    return entry.get("simulator_wall_clock_ms_mean",
+                     entry.get("latency_ms_mean", float("nan")))
+
+
+def _trust_cell(entry: dict) -> str:
+    val = entry.get("trust_mean", float("nan"))
+    sem = entry.get("trust_semantics", "unknown")
+    marker = "*" if sem == "nominal_default" else " "
+    return f"{val:>5.3f}{marker}"
+
+
+# Prefer the paper-snapshot v2 artefact when present; fall back to v1.
+b = load("baseline_v2") or load("baseline")
 if b:
-    print("\n[1] Baseline comparison (p_anom = 0.04, 200 slots, 3 MC)")
-    print("-" * 78)
-    header = ["Method", "Utility", "±std", "Rate(Mbps)", "Pd", "Energy", "Lat(ms)"]
-    print(f"{header[0]:<22s} {header[1]:>8s} {header[2]:>6s} {header[3]:>11s} "
-          f"{header[4]:>6s} {header[5]:>7s} {header[6]:>8s}")
-    order = ["static", "reactive", "dt_only", "dt_qa", "full", "dt_trust"]
+    print("\n[1] Baseline comparison (p_anom = 0.04)")
+    print("-" * 92)
+    header = ["Method", "Utility", "±std", "Rate(Mbps)", "Pd", "Trust",
+              "Energy", "SimWall(ms)"]
+    print(f"{header[0]:<22s} {header[1]:>8s} {header[2]:>6s} "
+          f"{header[3]:>11s} {header[4]:>6s} {header[5]:>7s} "
+          f"{header[6]:>7s} {header[7]:>12s}")
+    order = ["static", "reactive", "dt_only", "dt_qa", "dt_trust", "full"]
     display = {
         "static": "Static ISAC",
         "reactive": "Reactive",
@@ -55,13 +70,16 @@ if b:
               f"{s['utility_std']:>6.3f} "
               f"{s['rate_bps_total_mean']/1e6:>11.1f} "
               f"{s['p_d_mean_mean']:>6.3f} "
+              f"{_trust_cell(s):>7s} "
               f"{s['energy_norm_mean']:>7.3f} "
-              f"{s['latency_ms_mean']:>8.2f}")
+              f"{_wall_clock_ms(s):>12.2f}")
+    print("  * trust value is a nominal default, not a Bayesian-EWMA posterior")
     best = max(b.items(), key=lambda kv: kv[1]['utility_mean'])
-    print(f"\n  Winner: {display[best[0]]}  utility = {best[1]['utility_mean']:.3f}")
+    print(f"\n  Winner by utility: {display[best[0]]}  "
+          f"utility = {best[1]['utility_mean']:.3f}")
 
 # ---------- Anomaly sweep ----------
-a = load("anomaly_sweep")
+a = load("anomaly_sweep_v2") or load("anomaly_sweep")
 if a:
     print("\n[2] Anomaly-rate sweep (utility vs p_anom)")
     print("-" * 78)
@@ -104,7 +122,7 @@ if ss:
     print(f"{'M_s':>5s} {'utility':>10s} {'latency(ms)':>14s} {'rate(Mbps)':>12s}")
     for s in sizes:
         v = ss[str(s)]
-        print(f"{s:>5d} {v['utility_mean']:>10.3f} {v['latency_ms_mean']:>14.2f} "
+        print(f"{s:>5d} {v['utility_mean']:>10.3f} {_wall_clock_ms(v):>14.2f} "
               f"{v['rate_bps_total_mean']/1e6:>12.1f}")
     best_s = max(sizes, key=lambda x: ss[str(x)]['utility_mean'])
     print(f"\n  Peak at M_s = {best_s}, utility = {ss[str(best_s)]['utility_mean']:.3f}")

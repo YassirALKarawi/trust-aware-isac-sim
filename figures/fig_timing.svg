@@ -73,20 +73,22 @@
     </text>
   </g>
 
-  <!-- Complexity bar -->
+  <!-- Runtime budget bar — illustrative projection, NOT simulator measurement.
+       Actual simulator wall-clock per method lives in results/baseline.json
+       under simulator_wall_clock_ms_mean. See docs/PAPER_CODE_ALIGNMENT_AUDIT.md §3. -->
   <g transform="translate(60,340)">
     <rect width="920" height="90" rx="12" fill="#f9fafb" stroke="#d1d5db"/>
-    <text x="16" y="26" font-size="13" font-weight="700" fill="#111827">Runtime budget  (measured)</text>
+    <text x="16" y="26" font-size="13" font-weight="700" fill="#111827">Runtime budget  (illustrative projection — not measured by this simulator)</text>
     <g font-size="12" fill="#111827">
-      <text x="16" y="52">simulator end-to-end:</text>
-      <rect x="170" y="40" width="340" height="16" fill="#1f4e79"/>
-      <text x="340" y="52" text-anchor="middle" fill="#ffffff" font-weight="700">31 ms  (CPython 3.10 · single core)</text>
+      <text x="16" y="52">projected simulator (vectorised):</text>
+      <rect x="210" y="40" width="300" height="16" fill="#1f4e79"/>
+      <text x="360" y="52" text-anchor="middle" fill="#ffffff" font-weight="700">≈ 31 ms  (projected single-core Python)</text>
 
-      <text x="16" y="76">deployed inference:</text>
-      <rect x="170" y="64" width="40" height="16" fill="#27ae60"/>
-      <text x="218" y="76" fill="#111827" font-weight="700">1.8 ms</text>
+      <text x="16" y="76">projected native deployed:</text>
+      <rect x="210" y="64" width="40" height="16" fill="#27ae60"/>
+      <text x="258" y="76" fill="#111827" font-weight="700">≈ 1.8 ms</text>
       <text x="400" y="76" fill="#6b7280" font-style="italic">
-        → easily fits the 10 ms near-RT slot (≈18% headroom budget at deployed scale)
+        → projected to fit 10 ms near-RT slot; see baseline.json for measured wall-clock
       </text>
     </g>
   </g>
