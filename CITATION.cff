@@ -8,8 +8,8 @@ authors:
     email: "yassir@uodiyala.edu.iq"
 license: MIT
 repository-code: "https://github.com/YassirALKarawi/trust-aware-isac-sim"
-version: "1.0.0"
-date-released: "2026-04-18"
+version: "1.1.0"
+date-released: "2026-04-21"
 keywords:
   - ISAC
   - 6G

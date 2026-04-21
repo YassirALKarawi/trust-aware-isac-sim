@@ -18,7 +18,10 @@
       "accuracy_mean_mean": 0.028104809224170225,
       "accuracy_mean_std": 0.018761067430141977,
       "latency_ms_mean": 9.901437275008599,
-      "latency_ms_std": 0.04607149165470492
+      "latency_ms_std": 0.04607149165470492,
+      "simulator_wall_clock_ms_mean": 9.901437275008599,
+      "simulator_wall_clock_ms_std": 0.04607149165470492,
+      "trust_semantics": "nominal_default"
     },
     "5": {
       "utility_mean": 0.2658616641000637,
@@ -38,7 +41,10 @@
       "accuracy_mean_mean": 0.01881484774192467,
       "accuracy_mean_std": 0.005086481329124901,
       "latency_ms_mean": 9.953380966658187,
-      "latency_ms_std": 0.2737978833768775
+      "latency_ms_std": 0.2737978833768775,
+      "simulator_wall_clock_ms_mean": 9.953380966658187,
+      "simulator_wall_clock_ms_std": 0.2737978833768775,
+      "trust_semantics": "nominal_default"
     },
     "10": {
       "utility_mean": 0.2612585405307893,
@@ -58,7 +64,10 @@
       "accuracy_mean_mean": 0.11743846189052545,
       "accuracy_mean_std": 0.07287867240186557,
       "latency_ms_mean": 9.990249791671127,
-      "latency_ms_std": 0.08041830833083896
+      "latency_ms_std": 0.08041830833083896,
+      "simulator_wall_clock_ms_mean": 9.990249791671127,
+      "simulator_wall_clock_ms_std": 0.08041830833083896,
+      "trust_semantics": "nominal_default"
     },
     "15": {
       "utility_mean": 0.2567698959552091,
@@ -78,7 +87,10 @@
       "accuracy_mean_mean": 0.10126042662451079,
       "accuracy_mean_std": 0.01102839112458373,
       "latency_ms_mean": 30.97383574167149,
-      "latency_ms_std": 0.6399475583369476
+      "latency_ms_std": 0.6399475583369476,
+      "simulator_wall_clock_ms_mean": 30.97383574167149,
+      "simulator_wall_clock_ms_std": 0.6399475583369476,
+      "trust_semantics": "nominal_default"
     },
     "20": {
       "utility_mean": 0.29028965709271676,
@@ -98,7 +110,10 @@
       "accuracy_mean_mean": 0.1093234829668917,
       "accuracy_mean_std": 0.038528362432023205,
       "latency_ms_mean": 31.37576763335801,
-      "latency_ms_std": 0.001889033319457667
+      "latency_ms_std": 0.001889033319457667,
+      "simulator_wall_clock_ms_mean": 31.37576763335801,
+      "simulator_wall_clock_ms_std": 0.001889033319457667,
+      "trust_semantics": "nominal_default"
     }
   },
   "dt_only": {
@@ -120,7 +135,10 @@
       "accuracy_mean_mean": 0.07405635481003818,
       "accuracy_mean_std": 0.026336627357726884,
       "latency_ms_mean": 40.76634498333457,
-      "latency_ms_std": 0.08501748333931758
+      "latency_ms_std": 0.08501748333931758,
+      "simulator_wall_clock_ms_mean": 40.76634498333457,
+      "simulator_wall_clock_ms_std": 0.08501748333931758,
+      "trust_semantics": "active"
     },
     "5": {
       "utility_mean": 0.22939048232604306,
@@ -140,7 +158,10 @@
       "accuracy_mean_mean": 0.025361080345356647,
       "accuracy_mean_std": 0.013804372987905184,
       "latency_ms_mean": 45.45136817502756,
-      "latency_ms_std": 1.007220774988582
+      "latency_ms_std": 1.007220774988582,
+      "simulator_wall_clock_ms_mean": 45.45136817502756,
+      "simulator_wall_clock_ms_std": 1.007220774988582,
+      "trust_semantics": "active"
     },
     "10": {
       "utility_mean": 0.26519063840590723,
@@ -160,7 +181,10 @@
       "accuracy_mean_mean": 0.13974575052113167,
       "accuracy_mean_std": 0.057292715457621296,
       "latency_ms_mean": 48.50590383333989,
-      "latency_ms_std": 0.8423436166898064
+      "latency_ms_std": 0.8423436166898064,
+      "simulator_wall_clock_ms_mean": 48.50590383333989,
+      "simulator_wall_clock_ms_std": 0.8423436166898064,
+      "trust_semantics": "active"
     },
     "15": {
       "utility_mean": 0.2674346869774586,
@@ -180,7 +204,10 @@
       "accuracy_mean_mean": 0.14491351406912442,
       "accuracy_mean_std": 0.013999152500512577,
       "latency_ms_mean": 165.15544680832667,
-      "latency_ms_std": 1.2378619083430493
+      "latency_ms_std": 1.2378619083430493,
+      "simulator_wall_clock_ms_mean": 165.15544680832667,
+      "simulator_wall_clock_ms_std": 1.2378619083430493,
+      "trust_semantics": "active"
     },
     "20": {
       "utility_mean": 0.24282106750538537,
@@ -200,7 +227,10 @@
       "accuracy_mean_mean": 0.12617572184547785,
       "accuracy_mean_std": 0.056249887209522766,
       "latency_ms_mean": 174.92266564166434,
-      "latency_ms_std": 5.272972241649157
+      "latency_ms_std": 5.272972241649157,
+      "simulator_wall_clock_ms_mean": 174.92266564166434,
+      "simulator_wall_clock_ms_std": 5.272972241649157,
+      "trust_semantics": "active"
     }
   },
   "full": {
@@ -222,7 +252,10 @@
       "accuracy_mean_mean": 0.03328464811497104,
       "accuracy_mean_std": 0.0047879095618937675,
       "latency_ms_mean": 25.557023858326982,
-      "latency_ms_std": 0.8153844249856466
+      "latency_ms_std": 0.8153844249856466,
+      "simulator_wall_clock_ms_mean": 25.557023858326982,
+      "simulator_wall_clock_ms_std": 0.8153844249856466,
+      "trust_semantics": "active"
     },
     "5": {
       "utility_mean": 0.27600839720566833,
@@ -242,7 +275,10 @@
       "accuracy_mean_mean": 0.021398775384965974,
       "accuracy_mean_std": 0.0012989917239151806,
       "latency_ms_mean": 25.703336108324493,
-      "latency_ms_std": 0.2202326083420303
+      "latency_ms_std": 0.2202326083420303,
+      "simulator_wall_clock_ms_mean": 25.703336108324493,
+      "simulator_wall_clock_ms_std": 0.2202326083420303,
+      "trust_semantics": "active"
     },
     "10": {
       "utility_mean": 0.268370138806034,
@@ -262,7 +298,10 @@
       "accuracy_mean_mean": 0.1323673770777577,
       "accuracy_mean_std": 0.0726938958119295,
       "latency_ms_mean": 31.401135808319697,
-      "latency_ms_std": 4.019136658337176
+      "latency_ms_std": 4.019136658337176,
+      "simulator_wall_clock_ms_mean": 31.401135808319697,
+      "simulator_wall_clock_ms_std": 4.019136658337176,
+      "trust_semantics": "active"
     },
     "15": {
       "utility_mean": 0.24285727684142783,
@@ -282,7 +321,10 @@
       "accuracy_mean_mean": 0.12479614056173266,
       "accuracy_mean_std": 0.005579297758311168,
       "latency_ms_mean": 86.98020648333795,
-      "latency_ms_std": 0.06085181665109474
+      "latency_ms_std": 0.06085181665109474,
+      "simulator_wall_clock_ms_mean": 86.98020648333795,
+      "simulator_wall_clock_ms_std": 0.06085181665109474,
+      "trust_semantics": "active"
     },
     "20": {
       "utility_mean": 0.2726808238426799,
@@ -302,7 +344,10 @@
       "accuracy_mean_mean": 0.10525566762435003,
       "accuracy_mean_std": 0.048548573585730316,
       "latency_ms_mean": 84.59082291666391,
-      "latency_ms_std": 0.6833068499910695
+      "latency_ms_std": 0.6833068499910695,
+      "simulator_wall_clock_ms_mean": 84.59082291666391,
+      "simulator_wall_clock_ms_std": 0.6833068499910695,
+      "trust_semantics": "active"
     }
   }
 }

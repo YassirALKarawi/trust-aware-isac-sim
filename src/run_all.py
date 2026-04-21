@@ -12,9 +12,11 @@ import numpy as np
 
 from config import SimConfig
 from controller import ISACController, BASELINE_FLAGS, ControllerFlags, STATIC_ACTION
+from baselines import BASELINE_ORDER, BASELINE_TRUST_SEMANTICS
 
 
-OUT_DIR = Path("/home/claude/sim/results")
+# Canonical in-repo results directory. Overrideable via environment if needed.
+OUT_DIR = Path(__file__).resolve().parent.parent / "results"
 OUT_DIR.mkdir(exist_ok=True)
 
 
@@ -37,14 +39,25 @@ def run_one(cfg: SimConfig, flags: ControllerFlags, seed: int,
     }
 
 
-def aggregate(runs: list, burn_in: int = 50) -> dict:
-    """Mean and std over MC runs after burn-in."""
+def aggregate(runs: list, burn_in: int = 50, method_key: str = None) -> dict:
+    """
+    Mean and std over MC runs after burn-in.
+
+    When `method_key` is one of the canonical baseline keys, the returned
+    dict is additionally stamped with `trust_semantics` and a
+    `simulator_wall_clock_ms_*` alias for the latency fields. See
+    `docs/PAPER_CODE_ALIGNMENT_AUDIT.md` §2–§3.
+    """
     out = {}
     for key in ["utility", "rate_bps_mean", "rate_bps_total", "p_d_mean",
                 "trust", "eps_dt", "energy_norm", "accuracy_mean", "latency_ms"]:
         stacked = np.array([r[key][burn_in:] for r in runs])
         out[key + "_mean"] = float(stacked.mean())
         out[key + "_std"]  = float(stacked.mean(axis=1).std())
+    out["simulator_wall_clock_ms_mean"] = out["latency_ms_mean"]
+    out["simulator_wall_clock_ms_std"]  = out["latency_ms_std"]
+    if method_key in BASELINE_TRUST_SEMANTICS:
+        out["trust_semantics"] = BASELINE_TRUST_SEMANTICS[method_key]
     return out
 
 
@@ -53,7 +66,7 @@ def aggregate(runs: list, burn_in: int = 50) -> dict:
 # ============================================================
 def exp_baseline(cfg: SimConfig, n_mc: int = 3) -> dict:
     print("\n=== Experiment 1: Baseline comparison ===")
-    methods = ["static", "reactive", "dt_only", "dt_qa", "full", "dt_trust"]
+    methods = BASELINE_ORDER
     summary = {}
     for m in methods:
         print(f"  {m}...", end="", flush=True)
@@ -62,7 +75,7 @@ def exp_baseline(cfg: SimConfig, n_mc: int = 3) -> dict:
         for mc in range(n_mc):
             seed = cfg.master_seed + 1000 * mc
             runs.append(run_one(cfg, BASELINE_FLAGS[m], seed, tag=m))
-        summary[m] = aggregate(runs)
+        summary[m] = aggregate(runs, method_key=m)
         print(f" done ({time.perf_counter()-t0:.1f}s)  util={summary[m]['utility_mean']:.3f}")
     return summary
 
@@ -83,7 +96,7 @@ def exp_anomaly_sweep(cfg: SimConfig, n_mc: int = 2) -> dict:
             for mc in range(n_mc):
                 seed = cfg.master_seed + 100 * mc
                 runs.append(run_one(cfg, flags, seed, tag=f"{m}_p{p}"))
-            summary[m][str(p)] = aggregate(runs)
+            summary[m][str(p)] = aggregate(runs, method_key=m)
             print(f"    {m:<10s} util={summary[m][str(p)]['utility_mean']:.3f}")
     return summary
 
@@ -104,7 +117,7 @@ def exp_twin_delay(cfg: SimConfig, n_mc: int = 2) -> dict:
             for mc in range(n_mc):
                 seed = cfg.master_seed + 100 * mc
                 runs.append(run_one(cfg, flags, seed, tag=f"{m}_tau{tau}"))
-            summary[m][str(tau)] = aggregate(runs)
+            summary[m][str(tau)] = aggregate(runs, method_key=m)
             print(f"    {m:<10s} util={summary[m][str(tau)]['utility_mean']:.3f}")
     return summary
 
@@ -122,7 +135,7 @@ def exp_shortlist_size(cfg: SimConfig, n_mc: int = 2) -> dict:
         for mc in range(n_mc):
             seed = cfg.master_seed + 100 * mc
             runs.append(run_one(cfg, flags, seed, tag=f"full_Ms{M_s}"))
-        summary[str(M_s)] = aggregate(runs)
+        summary[str(M_s)] = aggregate(runs, method_key="full")
         print(f"  M_s={M_s:>2d}  util={summary[str(M_s)]['utility_mean']:.3f}  "
               f"latency={summary[str(M_s)]['latency_ms_mean']:.2f}ms")
     return summary
@@ -189,7 +202,7 @@ def exp_scalability_users(base_cfg: SimConfig, n_mc: int = 2) -> dict:
             for mc in range(n_mc):
                 seed = cfg.master_seed + 100 * mc
                 runs.append(run_one(cfg, BASELINE_FLAGS[m], seed, tag=f"{m}_U{U}"))
-            summary.setdefault(m, {})[str(U)] = aggregate(runs)
+            summary.setdefault(m, {})[str(U)] = aggregate(runs, method_key=m)
             ckpt_path.write_text(json.dumps(summary, indent=2))
             print(f"    {m:<10s} util={summary[m][str(U)]['utility_mean']:.3f}")
     return summary
@@ -218,7 +231,7 @@ def exp_scalability_targets(base_cfg: SimConfig, n_mc: int = 2) -> dict:
             for mc in range(n_mc):
                 seed = cfg.master_seed + 100 * mc
                 runs.append(run_one(cfg, BASELINE_FLAGS[m], seed, tag=f"{m}_K{K}"))
-            summary.setdefault(m, {})[str(K)] = aggregate(runs)
+            summary.setdefault(m, {})[str(K)] = aggregate(runs, method_key=m)
             ckpt_path.write_text(json.dumps(summary, indent=2))
             print(f"    {m:<10s} util={summary[m][str(K)]['utility_mean']:.3f}  "
                   f"Pd={summary[m][str(K)]['p_d_mean_mean']:.3f}")
@@ -247,9 +260,26 @@ def main():
     total_s = time.perf_counter() - t_start
     print(f"\n=== All experiments complete in {total_s/60:.1f} min ===")
 
-    out_path = OUT_DIR / "all_results.json"
-    out_path.write_text(json.dumps(results, indent=2))
-    print(f"Saved: {out_path}")
+    # Write both the monolithic all_results.json (convenience) and the
+    # per-experiment files consumed by tools/build_figures.py and
+    # tools/make_figures.py. Filenames match the README "Mapping results ↔
+    # paper" table.
+    (OUT_DIR / "all_results.json").write_text(json.dumps(results, indent=2))
+    (OUT_DIR / "baseline.json").write_text(
+        json.dumps(results["baseline"], indent=2))
+    (OUT_DIR / "anomaly_sweep.json").write_text(
+        json.dumps(results["anomaly_sweep"], indent=2))
+    (OUT_DIR / "twin_delay.json").write_text(
+        json.dumps(results["twin_delay"], indent=2))
+    (OUT_DIR / "shortlist_size.json").write_text(
+        json.dumps(results["shortlist_size"], indent=2))
+    (OUT_DIR / "trust_transient.json").write_text(
+        json.dumps(results["trust_transient"], indent=2))
+    (OUT_DIR / "scalability_users.json").write_text(
+        json.dumps(results["scalability_users"], indent=2))
+    (OUT_DIR / "scalability_targets.json").write_text(
+        json.dumps(results["scalability_targets"], indent=2))
+    print(f"Saved: {OUT_DIR}")
 
     # Quick summary print
     print("\n--- BASELINE SUMMARY ---")

@@ -62,6 +62,11 @@ def load(name):
     return json.loads(p.read_text()) if p.exists() else None
 
 
+def _wall_clock_ms(entry):
+    return entry.get("simulator_wall_clock_ms_mean",
+                     entry.get("latency_ms_mean", 0.0))
+
+
 def save(fig, name):
     for ext in ("png", "pdf"):
         fig.savefig(FIGS / f"{name}.{ext}")
@@ -88,8 +93,20 @@ def fig_baseline():
     ax.set_xticks(x)
     ax.set_xticklabels(labels, rotation=15, ha="right")
     ax.set_ylabel("Mean utility")
-    ax.set_title("Baseline comparison  —  Full framework wins by +17% vs. DT-only")
+    # Active-trust markers (asterisk on bars whose trust_semantics is
+    # nominal_default). See docs/PAPER_CODE_ALIGNMENT_AUDIT.md §2.
+    for xi, m in zip(x, order):
+        if b[m].get("trust_semantics") == "nominal_default":
+            ax.text(xi, 0.02, "*", ha="center", fontsize=14, color="#111827",
+                    fontweight="bold")
+    full_gain = (b["full"]["utility_mean"] - b["dt_qa"]["utility_mean"]) \
+                 / b["dt_qa"]["utility_mean"] * 100
+    ax.set_title(f"Baseline comparison  —  Full vs. strongest baseline (DT+QA): "
+                 f"+{full_gain:.1f}%")
     ax.set_ylim(0, max(utility) * 1.18)
+    fig.text(0.01, 0.01,
+             "*  trust value is a nominal default, not an active Bayesian-EWMA posterior",
+             fontsize=8, color="#374151")
     save(fig, "fig_baseline_bars")
 
 
@@ -135,7 +152,7 @@ def fig_shortlist():
         return
     sizes = sorted(int(k) for k in ss.keys())
     utility = [ss[str(s)]["utility_mean"] for s in sizes]
-    latency = [ss[str(s)]["latency_ms_mean"] for s in sizes]
+    latency = [_wall_clock_ms(ss[str(s)]) for s in sizes]
     fig, ax1 = plt.subplots(figsize=(9, 4.8))
     ax1.plot(sizes, utility, "-o", color="#1f4e79", label="Utility", linewidth=2.2)
     ax1.set_xlabel("Shortlist size M_s")
@@ -143,12 +160,13 @@ def fig_shortlist():
     ax1.tick_params(axis="y", labelcolor="#1f4e79")
 
     ax2 = ax1.twinx()
-    ax2.plot(sizes, latency, "--s", color="#c0392b", label="Latency (ms)",
-             linewidth=2.0)
-    ax2.set_ylabel("Latency (ms)", color="#c0392b")
+    ax2.plot(sizes, latency, "--s", color="#c0392b",
+             label="Simulator wall-clock (ms)", linewidth=2.0)
+    ax2.set_ylabel("Simulator wall-clock (ms)", color="#c0392b")
     ax2.tick_params(axis="y", labelcolor="#c0392b")
     ax2.grid(False)
-    ax1.set_title("Quantum-Assisted Shortlist Size Sensitivity")
+    ax1.set_title("Quantum-Assisted Shortlist Size Sensitivity  "
+                  "(utility plateaus near M_s ≈ 10–20)")
     save(fig, "fig_shortlist_size")
 
 
