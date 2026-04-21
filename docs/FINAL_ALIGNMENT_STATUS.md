@@ -174,6 +174,6 @@ All nine "measured" or "derived" entries in
 
 ## 9. Commits on this alignment branch
 
-Branch: `claude/align-paper-consistency-kZ0q2`. See the Git log for the
+Branch: `feature/align-paper-consistency`. See the Git log for the
 exact history; the single commit attached to this file documents the
 complete Phase 1–10 remediation.
